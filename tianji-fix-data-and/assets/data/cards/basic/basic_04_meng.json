@@ -1,0 +1,104 @@
+{
+  "id": "basic_04_meng",
+  "name": "蒙",
+  "symbol": "☶☵",
+  "sequence": 4,
+  "pinyin": "meng",
+  "strokes": 13,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "启蒙之雾",
+    "description": "指定一名其他玩家，在该玩家解读基础牌时，你为其选择【教化】或【惩戒】。",
+    "variants": {
+      "di": {
+        "name": "引导",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "status_id": "MONTORIAL_FOG",
+                "duration": 1,
+                "value": {
+                  "teach_effect": {
+                    "action": "COPY_EFFECT",
+                    "params": {
+                      "target": "SELF",
+                      "source_effect": {
+                        "type": "INTERRUPTED_EFFECT"
+                      },
+                      "modifications": {
+                        "only_gains": true,
+                        "multiplier": 0.5
+                      }
+                    }
+                  },
+                  "discipline_effect": {
+                    "action": "LOSE_RESOURCE",
+                    "params": {
+                      "target": "EVENT_SOURCE_PLAYER",
+                      "resource": "health",
+                      "value": 5
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "约束",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "status_id": "MONTORIAL_FOG",
+                "duration": 1,
+                "value": {
+                  "discipline_effect": {
+                    "action": "LOSE_RESOURCE",
+                    "params": {
+                      "target": "EVENT_SOURCE_PLAYER",
+                      "resource": "health",
+                      "value": 8
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "反制",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "status_id": "MONTORIAL_FOG",
+                "duration": 1,
+                "value": {
+                  "discipline_effect": {
+                    "action": "COPY_EFFECT",
+                    "params": {
+                      "target": "OPPONENT_CHOICE_SINGLE",
+                      "source_effect": {
+                        "type": "INTERRUPTED_EFFECT"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "id": "basic_05_xu",
+  "name": "需",
+  "symbol": "☵☰",
+  "sequence": 5,
+  "pinyin": "xu",
+  "strokes": 8,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "云中之需",
+    "description": "跳过解读，在下轮归整时获得奖励。",
+    "variants": {
+      "di": {
+        "name": "静待",
+        "effect": {
+          "actions": [
+            {
+              "action": "SKIP_PHASE",
+              "params": {
+                "phase": "INTERPRETATION"
+              }
+            },
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "SELF",
+                "status_id": "IMMUNITY_GENERAL_NEGATIVE",
+                "value": 1,
+                "duration": 1
+              }
+            },
+            {
+              "action": "EXECUTE_LATER",
+              "params": {
+                "delay": "NEXT_UPKEEP_PHASE",
+                "expiry_time": "1 ROUND",
+                "effect": {
+                  "actions": [
+                    {
+                      "action": "GAIN_RESOURCE",
+                      "params": {
+                        "target": "SELF",
+                        "resource": "gold",
+                        "value": 10
+                      }
+                    },
+                    {
+                      "action": "DRAW_CARD",
+                      "params": {
+                        "target": "SELF",
+                        "deck": "basic",
+                        "count": 2
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "险待",
+        "effect": {
+          "actions": [
+            {
+              "action": "SKIP_PHASE",
+              "params": {
+                "phase": "INTERPRETATION"
+              }
+            },
+            {
+              "action": "EXECUTE_LATER",
+              "params": {
+                "delay": "NEXT_UPKEEP_PHASE",
+                "expiry_time": "1 ROUND",
+                "condition": {
+                  "op": "PLAYER_HAS_NOT_TAKEN_DAMAGE_SINCE",
+                  "params": {
+                    "timestamp": "NOW"
+                  }
+                },
+                "effect": {
+                  "actions": [
+                    {
+                      "action": "GAIN_RESOURCE",
+                      "params": {
+                        "target": "SELF",
+                        "resource": "gold",
+                        "value": 15
+                      }
+                    },
+                    {
+                      "action": "DRAW_CARD",
+                      "params": {
+                        "target": "SELF",
+                        "deck": "basic",
+                        "count": 3
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "宴待",
+        "effect": {
+          "actions": [
+            {
+              "action": "SKIP_PHASE",
+              "params": {
+                "phase": "INTERPRETATION"
+              }
+            },
+            {
+              "action": "EXECUTE_LATER",
+              "params": {
+                "delay": "NEXT_UPKEEP_PHASE",
+                "expiry_time": "1 ROUND",
+                "effect": {
+                  "actions": [
+                    {
+                      "action": "GAIN_RESOURCE",
+                      "params": {
+                        "target": "SELF",
+                        "resource": "gold",
+                        "value": 10
+                      }
+                    },
+                    {
+                      "action": "CHOICE",
+                      "params": {
+                        "target": "SELF",
+                        "options": [
+                          {
+                            "description": "将10金币赠予盟友",
+                            "effect": {
+                              "action": "TRANSFER_RESOURCE",
+                              "params": {
+                                "from": "SELF",
+                                "to": "ALLY_FORMAL_SINGLE",
+                                "resource": "gold",
+                                "value": 10
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

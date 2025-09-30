@@ -1,0 +1,155 @@
+{
+  "id": "basic_03_tun",
+  "name": "屯",
+  "symbol": "☵☳",
+  "sequence": 3,
+  "pinyin": "tun",
+  "strokes": 7,
+  "type": "basic",
+  "effect": {
+    "condition": {
+      "op": "IS_ENTITY_ON_BOARD",
+      "params": {
+        "entity_type": "ENTITY_TUN",
+        "count": 0
+      }
+    },
+    "actions": [
+      {
+        "action": "CREATE_ENTITY",
+        "params": {
+          "entity_type": "ENTITY_TUN",
+          "position": "SELF",
+          "owner": "SELF",
+          "properties": {
+            "name": "屯",
+            "duration": 3,
+            "blocks_movement": {
+              "for": "ALL_PLAYERS",
+              "exceptions": [
+                "OWNER_CAN_LEAVE"
+              ]
+            },
+            "detonation_card_id": "basic_03_tun"
+          }
+        }
+      }
+    ]
+  },
+  "core_mechanism": {
+    "name": "盘桓待机 (引爆)",
+    "description": "引爆【屯】实体时触发。你必须在【屯】所在的区域才能引爆。",
+    "variants": {
+      "di": {
+        "name": "建侯",
+        "effect": {
+          "actions": [
+            {
+              "action": "DESTROY_ENTITY",
+              "params": {
+                "target_entity_type": "ENTITY_TUN",
+                "position": "SELF"
+              }
+            },
+            {
+              "action": "MOVE",
+              "params": {
+                "target": "SELF",
+                "destination": "ADJACENT_EMPTY",
+                "value": 1
+              }
+            },
+            {
+              "action": "CREATE_ENTITY",
+              "params": {
+                "entity_type": "ENTITY_OUTPOST",
+                "position": "SELF",
+                "owner": "SELF",
+                "is_permanent": true,
+                "properties": {
+                  "name": "前哨",
+                  "on_enter_effect": {
+                    "actions": [
+                      {
+                        "action": "GAIN_RESOURCE",
+                        "params": {
+                          "target": "EVENT_SOURCE_PLAYER",
+                          "resource": "gold",
+                          "value": 2
+                        }
+                      }
+                    ]
+                  },
+                  "on_leave_effect": {
+                    "actions": [
+                      {
+                        "action": "GAIN_RESOURCE",
+                        "params": {
+                          "target": "EVENT_SOURCE_PLAYER",
+                          "resource": "gold",
+                          "value": 2
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "求助",
+        "effect": {
+          "actions": [
+            {
+              "action": "DESTROY_ENTITY",
+              "params": {
+                "target_entity_type": "ENTITY_TUN",
+                "position": "SELF"
+              }
+            },
+            {
+              "action": "SWAP_HAND_CARDS",
+              "params": {
+                "target": "SELF",
+                "other_player": "ALLY_FORMAL_SINGLE_CHOICE",
+                "atomic": true
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "甘霖",
+        "effect": {
+          "actions": [
+            {
+              "action": "DESTROY_ENTITY",
+              "params": {
+                "target_entity_type": "ENTITY_TUN",
+                "position": "SELF"
+              }
+            },
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 15
+              }
+            },
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "YIN_YANG_GAUGE",
+                "value": 2
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
