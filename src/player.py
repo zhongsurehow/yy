@@ -1,3 +1,4 @@
+import logging
 from dataclasses import dataclass, field
 from typing import List, Dict, Any
 from .card import Card
@@ -57,21 +58,21 @@ class Player:
         elif resource_type == "yin_yang":
             self.yin_yang += value
         else:
-            print(f"Warning: Unknown resource type '{resource_type}'")
+            logging.warning(f"Unknown resource type '{resource_type}'")
 
     def add_status(self, status: Dict[str, Any]):
         """Adds a new status effect to the player."""
         self.status_effects.append(status)
-        print(f"      - Status Applied: {status.get('status_id')} to {self.name} for {status.get('duration')} turn(s).")
+        logging.info(f"Status Applied: {status.get('status_id')} to {self.name} for {status.get('duration')} turn(s).")
 
     def remove_status(self, status_id: str):
         """Removes a status effect by its ID."""
         status_to_remove = next((s for s in self.status_effects if s.get("status_id") == status_id), None)
         if status_to_remove:
             self.status_effects.remove(status_to_remove)
-            print(f"      - Status Removed: {status_id} from {self.name}.")
+            logging.info(f"Status Removed: {status_id} from {self.name}.")
         else:
-            print(f"      - Attempted to remove status {status_id}, but it was not found on {self.name}.")
+            logging.warning(f"Attempted to remove status {status_id}, but it was not found on {self.name}.")
 
     def tick_statuses(self):
         """Decrements the duration of all temporary statuses and removes expired ones."""
@@ -85,4 +86,4 @@ class Player:
                 status['duration'] -= 1
                 if status['duration'] <= 0:
                     self.status_effects.remove(status)
-                    print(f"  - Status Expired: {status.get('status_id')} on {self.name}.")
+                    logging.info(f"Status Expired: {status.get('status_id')} on {self.name}.")

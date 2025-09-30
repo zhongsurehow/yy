@@ -1,3 +1,4 @@
+import logging
 from dataclasses import dataclass, field
 from typing import List, Dict, Any
 
@@ -25,6 +26,7 @@ class GameState:
     active_rules: Dict[str, Any] = field(default_factory=dict)
     last_resolved_effect: Dict[str, Any] | None = None
     interrupt_flags: Dict[str, bool] = field(default_factory=dict)
+    effect_queue: List[Dict[str, Any]] = field(default_factory=list)
 
     def get_player(self, player_id: str) -> Player | None:
         """Finds a player by their ID."""
@@ -39,12 +41,12 @@ class GameState:
         self.active_player_index = (self.active_player_index + 1) % len(self.players)
         if self.active_player_index == 0:
             self.current_turn += 1
-            print(f"\n--- Starting Turn {self.current_turn} ---")
+            logging.info(f"--- Starting Turn {self.current_turn} ---")
 
     def set_phase(self, phase_name: str):
         """Sets the current game phase."""
         self.current_phase = phase_name
-        print(f"\n== Phase: {phase_name} ==")
+        logging.info(f"== Phase: {phase_name} ==")
 
     def __repr__(self) -> str:
         return f"GameState(Turn={self.current_turn}, Phase='{self.current_phase}', ActivePlayer='{self.get_active_player().name}')"

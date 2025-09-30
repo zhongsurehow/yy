@@ -1,4 +1,5 @@
 import unittest
+import logging
 from unittest.mock import MagicMock
 
 # Adjust imports to work with the project structure
@@ -20,7 +21,6 @@ class TestEffectEngine(unittest.TestCase):
 
     def test_cost_check(self):
         """Verify that a player cannot use an effect they cannot afford."""
-        print("\n--- Running Test: test_cost_check ---")
         costly_effect = {
             "cost": [{"resource": "gold", "value": 10}],
             "actions": [{"action": "DEAL_DAMAGE", "params": {"target": "OPPONENT_CHOICE_SINGLE", "value": 10}}]
@@ -29,22 +29,21 @@ class TestEffectEngine(unittest.TestCase):
         # P1 can afford it
         initial_p1_gold = self.p1.gold
         initial_p2_health = self.p2.health
-        self.engine.execute_effect(costly_effect, self.p1)
+        self.engine.queue_effect(costly_effect, self.p1)
+        self.engine.resolve_effects()
         self.assertEqual(self.p1.gold, initial_p1_gold - 10)
         self.assertEqual(self.p2.health, initial_p2_health - 10)
-        print("  - PASSED: Alice paid the cost and the effect executed.")
 
         # P2 cannot afford it
         initial_p2_gold = self.p2.gold
         initial_p3_health = self.p3.health
-        self.engine.execute_effect(costly_effect, self.p2)
+        self.engine.queue_effect(costly_effect, self.p2)
+        self.engine.resolve_effects()
         self.assertEqual(self.p2.gold, initial_p2_gold) # Gold should not change
         self.assertEqual(self.p3.health, initial_p3_health) # Health should not change
-        print("  - PASSED: Bob could not pay, so the effect was aborted.")
 
     def test_permanent_status(self):
         """Verify that permanent statuses do not expire."""
-        print("\n--- Running Test: test_permanent_status ---")
         perm_status_effect = {
             "actions": [{
                 "action": "APPLY_STATUS",
@@ -52,19 +51,17 @@ class TestEffectEngine(unittest.TestCase):
             }]
         }
 
-        self.engine.execute_effect(perm_status_effect, self.p1)
+        self.engine.queue_effect(perm_status_effect, self.p1)
+        self.engine.resolve_effects()
         self.assertIn("PERM_SHIELD", [s['status_id'] for s in self.p1.status_effects])
 
-        # Tick statuses multiple times
         self.p1.tick_statuses()
         self.p1.tick_statuses()
 
         self.assertIn("PERM_SHIELD", [s['status_id'] for s in self.p1.status_effects])
-        print("  - PASSED: Permanent status correctly persisted after ticking.")
 
     def test_targeting_same_zone(self):
         """Verify targeting players in the same zone."""
-        print("\n--- Running Test: test_targeting_same_zone ---")
         zone_effect = {
             "actions": [{
                 "action": "LOSE_RESOURCE",
@@ -75,17 +72,36 @@ class TestEffectEngine(unittest.TestCase):
         initial_p2_gold = self.p2.gold
         initial_p3_gold = self.p3.gold
 
-        self.engine.execute_effect(zone_effect, self.p1)
+        self.engine.queue_effect(zone_effect, self.p1)
+        self.engine.resolve_effects()
 
-        # Bob is in the same zone as Alice, so he should be affected
         self.assertEqual(self.p2.gold, initial_p2_gold - 3)
-        # Charlie is in a different zone, so he should be unaffected
         self.assertEqual(self.p3.gold, initial_p3_gold)
-        print("  - PASSED: Correctly targeted player in the same zone and ignored player in a different zone.")
 
-    def test_copy_effect(self):
-        """Verify that COPY_EFFECT works as intended."""
-        print("\n--- Running Test: test_copy_effect ---")
+    def test_priority_system(self):
+        """Verify that high-priority effects (like CANCEL) execute before low-priority ones."""
+        # P1 tries to deal damage to P2 (low priority)
+        damage_effect = {
+            "actions": [{"action": "DEAL_DAMAGE", "params": {"target": "PLAYER_CHOICE_ANY", "value": 10}}]
+        }
+        # P3 plays a cancel effect (high priority)
+        cancel_effect = {
+            "actions": [{"action": "INTERRUPT", "params": {"interrupt_type": "CANCEL"}}]
+        }
+
+        initial_p2_health = self.p2.health
+
+        # Queue effects in a non-priority order
+        self.engine.queue_effect(damage_effect, self.p1)
+        self.engine.queue_effect(cancel_effect, self.p3)
+
+        self.engine.resolve_effects()
+
+        # The cancel effect should have run first, preventing the damage.
+        self.assertEqual(self.p2.health, initial_p2_health)
+
+    def test_copy_effect_with_queue(self):
+        """Verify COPY_EFFECT works with the new queueing system."""
         original_effect = {
             "actions": [{"action": "GAIN_RESOURCE", "params": {"target": "SELF", "resource": "gold", "value": 20}}]
         }
@@ -93,20 +109,21 @@ class TestEffectEngine(unittest.TestCase):
             "actions": [{"action": "COPY_EFFECT", "params": {"target": "SELF"}}]
         }
 
-        # P1 uses the original effect
         initial_p1_gold = self.p1.gold
-        self.engine.execute_effect(original_effect, self.p1)
-        self.assertEqual(self.p1.gold, initial_p1_gold + 20)
-        print("  - Verified: Original effect grants 20 gold.")
-
-        # Now, P2 copies the effect
         initial_p2_gold = self.p2.gold
-        self.engine.execute_effect(copy_cat_effect, self.p2)
-        # P2 should gain 20 gold because it copies the effect, and the target is SELF (relative to P2)
+
+        # P1 queues the original effect, P2 queues the copy effect
+        self.engine.queue_effect(original_effect, self.p1)
+        self.engine.queue_effect(copy_cat_effect, self.p2)
+
+        self.engine.resolve_effects()
+
+        # Both effects should have resolved. P1 gets gold from the original effect.
+        self.assertEqual(self.p1.gold, initial_p1_gold + 20)
+        # P2 copies the effect and should also get gold.
         self.assertEqual(self.p2.gold, initial_p2_gold + 20)
-        print("  - PASSED: Bob successfully copied the effect and gained gold.")
+
 
 if __name__ == '__main__':
-    # This allows running the test script directly.
-    # To run from the root directory: python -m src.test_engine
+    logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
     unittest.main()
