@@ -1,0 +1,60 @@
+{
+  "id": "basic_23_bo",
+  "name": "剥",
+  "symbol": "☶☷",
+  "sequence": 23,
+  "pinyin": "bo",
+  "strokes": 23,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "剥蚀殆尽",
+    "description": "事物被腐蚀，根基动摇。",
+    "variants": {
+      "di": {
+        "name": "剥床以足",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "resource": "gold",
+                "value": 3
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "剥床以肤",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "resource": "health",
+                "value": 5
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "硕果不食",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "OPPONENT_ALL",
+                "resource": "gold",
+                "value": 3
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "id": "basic_62_xiao_guo",
+  "name": "小过",
+  "symbol": "☳☶",
+  "sequence": 62,
+  "pinyin": "xiao_guo",
+  "strokes": 62,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "小有过失",
+    "description": "可以做小事，不宜做大事。",
+    "variants": {
+      "di": {
+        "name": "弗过",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 1
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "遇其妣",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "health",
+                "value": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "弗遇",
+        "effect": {
+          "actions": [
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 1,
+                "reveal": true
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

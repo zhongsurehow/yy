@@ -1,0 +1,75 @@
+{
+  "id": "basic_17_sui",
+  "name": "随",
+  "symbol": "☱☳",
+  "sequence": 17,
+  "pinyin": "sui",
+  "strokes": 17,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "随行逐队",
+    "description": "跟随他人的行动。",
+    "variants": {
+      "di": {
+        "name": "出门交",
+        "effect": {
+          "actions": [
+            {
+              "action": "MOVE",
+              "params": {
+                "target": "SELF",
+                "destination": "ADJACENT_TO_PLAYER",
+                "player": "LAST_ACTED_PLAYER"
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "系小子",
+        "effect": {
+          "actions": [
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "SELF",
+                "count": 1
+              }
+            },
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 2
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "随有获",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "LAST_ACTED_PLAYER",
+                "resource": "gold",
+                "value": 3
+              }
+            },
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 3
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

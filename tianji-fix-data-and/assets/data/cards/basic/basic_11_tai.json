@@ -1,0 +1,68 @@
+{
+  "id": "basic_11_tai",
+  "name": "泰",
+  "symbol": "☷☰",
+  "sequence": 11,
+  "pinyin": "tai",
+  "strokes": 11,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "否极泰来",
+    "description": "天地交感，万物通泰。带来和平与丰盛。",
+    "variants": {
+      "di": {
+        "name": "拔茅茹",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 5
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "包荒",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "health",
+                "value": 5
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "泰重来",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 3
+              }
+            },
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

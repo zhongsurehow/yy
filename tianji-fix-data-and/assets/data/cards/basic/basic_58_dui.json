@@ -1,0 +1,76 @@
+{
+  "id": "basic_58_dui",
+  "name": "兑",
+  "symbol": "☱☱",
+  "sequence": 58,
+  "pinyin": "dui",
+  "strokes": 58,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "和悦之道",
+    "description": "带来喜悦与和睦。",
+    "variants": {
+      "di": {
+        "name": "和兑",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 3
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "孚兑",
+        "effect": {
+          "actions": [
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 1
+              }
+            },
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "PLAYER_CHOICE_ANY",
+                "deck": "basic",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "引兑",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "health",
+                "value": 3
+              }
+            },
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "ALLY_FORMAL_ALL",
+                "resource": "health",
+                "value": 3
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

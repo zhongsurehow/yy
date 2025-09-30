@@ -1,0 +1,85 @@
+{
+  "id": "basic_37_jia_ren",
+  "name": "家人",
+  "symbol": "☴☲",
+  "sequence": 37,
+  "pinyin": "jia_ren",
+  "strokes": 37,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "家人之道",
+    "description": "强调家庭、盟友关系。",
+    "variants": {
+      "di": {
+        "name": "闲有家",
+        "effect": {
+          "condition": {
+            "op": "PLAYER_HAS_ALLY"
+          },
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "health",
+                "value": 3
+              }
+            },
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "ALLY_FORMAL_ALL",
+                "resource": "health",
+                "value": 3
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "妇子嘻嘻",
+        "effect": {
+          "actions": [
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 1
+              }
+            },
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "ALLY_FORMAL_SINGLE_CHOICE",
+                "deck": "basic",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "富家",
+        "effect": {
+          "actions": [
+            {
+              "action": "TRANSFER_RESOURCE",
+              "params": {
+                "from": "SELF",
+                "to": "ALLY_FORMAL_SINGLE_CHOICE",
+                "resource": "gold",
+                "value": {
+                  "op": "DIVIDE",
+                  "a": "VAR_SELF_GOLD",
+                  "b": 2,
+                  "round": "UP"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

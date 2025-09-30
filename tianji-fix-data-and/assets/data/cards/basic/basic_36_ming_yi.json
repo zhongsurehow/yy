@@ -1,0 +1,58 @@
+{
+  "id": "basic_36_ming_yi",
+  "name": "明夷",
+  "symbol": "☷☲",
+  "sequence": 36,
+  "pinyin": "ming_yi",
+  "strokes": 36,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "晦暗之时",
+    "description": "光明受损，形势不利。",
+    "variants": {
+      "di": {
+        "name": "明夷于飞",
+        "effect": {
+          "actions": [
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "入于左腹",
+        "effect": {
+          "actions": [
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "source": "CHOICE_FROM_HAND"
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "不明晦",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "status_id": "EFFECTS_LOCKED",
+                "duration": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

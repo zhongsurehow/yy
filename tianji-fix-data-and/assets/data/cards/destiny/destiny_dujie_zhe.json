@@ -1,0 +1,8 @@
+{
+    "id": "destiny_dujie_zhe",
+    "type": "destiny",
+    "name": "渡劫者",
+    "effect": {
+        "description": "若你在游戏中曾触发过“阴阳逆转”，并且最终获得了胜利，额外获得25金币。"
+    }
+}

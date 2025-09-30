@@ -1,0 +1,68 @@
+{
+  "id": "basic_42_yi",
+  "name": "益",
+  "symbol": "☴☳",
+  "sequence": 42,
+  "pinyin": "yi",
+  "strokes": 42,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "益不足",
+    "description": "增益自己以求发展。",
+    "variants": {
+      "di": {
+        "name": "元吉",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 4
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "有孚惠心",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "health",
+                "value": 4
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "立心勿恒",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 2
+              }
+            },
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "ALLY_FORMAL_ALL",
+                "resource": "gold",
+                "value": 2
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

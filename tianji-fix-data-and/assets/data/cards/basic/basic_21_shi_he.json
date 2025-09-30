@@ -1,0 +1,70 @@
+{
+  "id": "basic_21_shi_he",
+  "name": "噬嗑",
+  "symbol": "☲☳",
+  "sequence": 21,
+  "pinyin": "shi_he",
+  "strokes": 21,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "惩奸除恶",
+    "description": "采取强硬手段解决问题。",
+    "variants": {
+      "di": {
+        "name": "噬肤",
+        "effect": {
+          "actions": [
+            {
+              "action": "DEAL_DAMAGE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "value": 3
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "噬干肉",
+        "effect": {
+          "cost": [
+            {
+              "resource": "gold",
+              "value": 3
+            }
+          ],
+          "actions": [
+            {
+              "action": "DEAL_DAMAGE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "value": 5
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "何校灭耳",
+        "effect": {
+          "actions": [
+            {
+              "action": "DEAL_DAMAGE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "value": 2
+              }
+            },
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "count": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

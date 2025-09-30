@@ -1,0 +1,8 @@
+{
+    "id": "function_zong",
+    "type": "function",
+    "name": "综卦",
+    "core_mechanism": {
+        "description": "将基础牌的卦象上下颠倒，变为一个全新的卦来解读。"
+    }
+}

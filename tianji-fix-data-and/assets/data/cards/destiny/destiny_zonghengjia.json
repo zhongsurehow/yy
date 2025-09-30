@@ -1,0 +1,8 @@
+{
+    "id": "destiny_zonghengjia",
+    "type": "destiny",
+    "name": "纵横家",
+    "effect": {
+        "description": "游戏结束时，若你的棋子停留在“金”或“木”属性的宫位上，你的最终金币总数额外增加30。"
+    }
+}

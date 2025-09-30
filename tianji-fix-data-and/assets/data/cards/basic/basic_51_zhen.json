@@ -1,0 +1,60 @@
+{
+  "id": "basic_51_zhen",
+  "name": "震",
+  "symbol": "☳☳",
+  "sequence": 51,
+  "pinyin": "zhen",
+  "strokes": 51,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "震惊百里",
+    "description": "带来突发的震动和混乱。",
+    "variants": {
+      "di": {
+        "name": "震索索",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "PLAYERS_IN_SAME_ZONE",
+                "resource": "health",
+                "value": 2
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "震遂泥",
+        "effect": {
+          "actions": [
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "ALL_PLAYERS",
+                "count": 1,
+                "source": "RANDOM"
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "震惊百里",
+        "effect": {
+          "actions": [
+            {
+              "action": "MOVE",
+              "params": {
+                "target": "OPPONENT_ALL",
+                "move_type": "RANDOM_DIRECTION",
+                "value": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

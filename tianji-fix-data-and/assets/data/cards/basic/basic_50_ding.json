@@ -1,0 +1,140 @@
+{
+  "id": "basic_50_ding",
+  "name": "鼎",
+  "symbol": "☲☴",
+  "sequence": 50,
+  "pinyin": "ding",
+  "strokes": 50,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "鼎鼐调和",
+    "description": "烹饪食物，凝聚力量。",
+    "variants": {
+      "di": {
+        "name": "鼎颠趾",
+        "effect": {
+          "actions": [
+            {
+              "action": "CHOICE",
+              "params": {
+                "target": "SELF",
+                "options": [
+                  {
+                    "description": "弃1张换2金币",
+                    "cost": [
+                      {
+                        "action": "DISCARD_CARD",
+                        "params": {
+                          "count": 1
+                        }
+                      }
+                    ],
+                    "effect": {
+                      "actions": [
+                        {
+                          "action": "GAIN_RESOURCE",
+                          "params": {
+                            "resource": "gold",
+                            "value": 2
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "description": "弃2张换4金币",
+                    "cost": [
+                      {
+                        "action": "DISCARD_CARD",
+                        "params": {
+                          "count": 2
+                        }
+                      }
+                    ],
+                    "effect": {
+                      "actions": [
+                        {
+                          "action": "GAIN_RESOURCE",
+                          "params": {
+                            "resource": "gold",
+                            "value": 4
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "description": "弃3张换6金币",
+                    "cost": [
+                      {
+                        "action": "DISCARD_CARD",
+                        "params": {
+                          "count": 3
+                        }
+                      }
+                    ],
+                    "effect": {
+                      "actions": [
+                        {
+                          "action": "GAIN_RESOURCE",
+                          "params": {
+                            "resource": "gold",
+                            "value": 6
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "鼎耳革",
+        "effect": {
+          "cost": [
+            {
+              "resource": "gold",
+              "value": 5
+            }
+          ],
+          "actions": [
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 3
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "玉铉大吉",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "health",
+                "value": 5
+              }
+            },
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "PLAYER_CHOICE_ANY",
+                "resource": "health",
+                "value": 5
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

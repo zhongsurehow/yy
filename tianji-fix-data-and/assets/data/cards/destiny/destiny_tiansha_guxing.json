@@ -1,0 +1,8 @@
+{
+    "id": "destiny_tiansha_guxing",
+    "type": "destiny",
+    "name": "天煞孤星",
+    "effect": {
+        "description": "如果你通过让所有其他玩家出局而获胜，你的胜利将被视为“大胜”。（用于多局计分）"
+    }
+}

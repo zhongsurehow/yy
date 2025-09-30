@@ -1,0 +1,66 @@
+{
+  "id": "basic_10_li",
+  "name": "履",
+  "symbol": "☰☱",
+  "sequence": 10,
+  "pinyin": "li",
+  "strokes": 10,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "如履薄冰",
+    "description": "小心翼翼地前进或采取行动。",
+    "variants": {
+      "di": {
+        "name": "安履",
+        "effect": {
+          "actions": [
+            {
+              "action": "MOVE",
+              "params": {
+                "target": "SELF",
+                "value": 1,
+                "move_type": "NORMAL_IGNORE_PENALTY"
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "眇能视",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOOKUP",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "info_type": "hand_cards"
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "履虎尾",
+        "effect": {
+          "actions": [
+            {
+              "action": "DEAL_DAMAGE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "value": 3
+              }
+            },
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "health",
+                "value": 3
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

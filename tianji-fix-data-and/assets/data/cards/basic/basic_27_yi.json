@@ -1,0 +1,78 @@
+{
+  "id": "basic_27_yi",
+  "name": "颐",
+  "symbol": "☶☳",
+  "sequence": 27,
+  "pinyin": "yi",
+  "strokes": 27,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "修身养性",
+    "description": "颐养天年，获得补给。",
+    "variants": {
+      "di": {
+        "name": "舍尔灵龟",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "health",
+                "value": 3
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "拂经",
+        "effect": {
+          "actions": [
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "SELF",
+                "count": "ALL"
+              }
+            },
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": {
+                  "op": "COUNT",
+                  "target": "DISCARDED_THIS_TURN"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "由颐",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "health",
+                "value": 3
+              }
+            },
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "ALLY_FORMAL_ALL",
+                "resource": "health",
+                "value": 3
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

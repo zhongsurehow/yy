@@ -1,0 +1,66 @@
+{
+  "id": "basic_07_shi",
+  "name": "师",
+  "symbol": "☷☵",
+  "sequence": 7,
+  "pinyin": "shi",
+  "strokes": 8,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "王师出征",
+    "description": "为你和盟友施加增益状态。",
+    "variants": {
+      "di": {
+        "name": "纪律",
+        "effect": {
+          "cost": [
+            {
+              "resource": "gold",
+              "value": 5
+            }
+          ],
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "ALLY_FORMAL_IN_PALACE",
+                "status_id": "WAR_FORMATION",
+                "duration": 1
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "兵法",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "ALLY_FORMAL_IN_PALACE",
+                "status_id": "RAPID_MARCH",
+                "duration": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "将帅",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "ALLY_FORMAL_SINGLE_CHOICE",
+                "status_id": "GENERAL",
+                "duration": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

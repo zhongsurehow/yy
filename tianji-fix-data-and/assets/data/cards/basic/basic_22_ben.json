@@ -1,0 +1,58 @@
+{
+  "id": "basic_22_ben",
+  "name": "贲",
+  "symbol": "☶☲",
+  "sequence": 22,
+  "pinyin": "ben",
+  "strokes": 22,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "文饰之美",
+    "description": "华美的装饰，实际作用不大。",
+    "variants": {
+      "di": {
+        "name": "贲其趾",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 1
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "贲其须",
+        "effect": {
+          "actions": [
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 1
+              }
+            },
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "SELF",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "白贲",
+        "effect": {
+          "actions": []
+        }
+      }
+    }
+  }
+}

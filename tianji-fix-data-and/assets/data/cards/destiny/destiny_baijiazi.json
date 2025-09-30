@@ -1,0 +1,8 @@
+{
+    "id": "destiny_baijiazi",
+    "type": "destiny",
+    "name": "败家子",
+    "effect": {
+        "description": "游戏结束时，若你的金币是全场最少（但未出局），且为基金补充的金币累计最多，你改为获得50金币。"
+    }
+}

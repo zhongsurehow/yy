@@ -1,0 +1,132 @@
+{
+  "id": "basic_06_song",
+  "name": "讼",
+  "symbol": "☰☵",
+  "sequence": 6,
+  "pinyin": "song",
+  "strokes": 8,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "天理仲裁",
+    "description": "与其他玩家通过比拼卡牌笔画数来决定胜负，并产生奖惩。",
+    "variants": {
+      "di": {
+        "name": "退让",
+        "effect": {
+          "actions": [
+            {
+              "action": "TRIGGER_EVENT",
+              "params": {
+                "event_id": "EVENT_SONG",
+                "participants": [
+                  "SELF",
+                  "OPPONENT_CHOICE_SINGLE"
+                ],
+                "modifications": {
+                  "SELF_LOSS_MODIFIER": {
+                    "op": "MULTIPLY",
+                    "value": 0.5
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "和解",
+        "effect": {
+          "actions": [
+            {
+              "action": "CHOICE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "options": [
+                  {
+                    "description": "接受和解",
+                    "effect": {
+                      "actions": [
+                        {
+                          "action": "PAY_COST",
+                          "params": {
+                            "target": "SELF",
+                            "resource": "gold",
+                            "value": 5
+                          }
+                        },
+                        {
+                          "action": "PAY_COST",
+                          "params": {
+                            "target": "EVENT_TARGET_PLAYER",
+                            "resource": "gold",
+                            "value": 5
+                          }
+                        },
+                        {
+                          "action": "DRAW_CARD",
+                          "params": {
+                            "target": "SELF",
+                            "deck": "basic",
+                            "count": 1
+                          }
+                        },
+                        {
+                          "action": "DRAW_CARD",
+                          "params": {
+                            "target": "EVENT_TARGET_PLAYER",
+                            "deck": "basic",
+                            "count": 1
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "description": "拒绝和解，开始争讼",
+                    "effect": {
+                      "action": "TRIGGER_EVENT",
+                      "params": {
+                        "event_id": "EVENT_SONG",
+                        "participants": [
+                          "SELF",
+                          "EVENT_TARGET_PLAYER"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "终审",
+        "effect": {
+          "actions": [
+            {
+              "action": "TRIGGER_EVENT",
+              "params": {
+                "event_id": "EVENT_SONG",
+                "participants": [
+                  "SELF",
+                  "OPPONENT_CHOICE_SINGLE"
+                ],
+                "modifications": {
+                  "SELF_WIN_EFFECT": {
+                    "action": "APPLY_STATUS",
+                    "params": {
+                      "target": "SELF",
+                      "status_id": "PRESTIGE",
+                      "is_permanent": true
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "id": "basic_56_lv",
+  "name": "旅",
+  "symbol": "☲☶",
+  "sequence": 56,
+  "pinyin": "lv",
+  "strokes": 56,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "行旅之道",
+    "description": "旅途中的见闻与得失。",
+    "variants": {
+      "di": {
+        "name": "旅琐琐",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 1
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "得其资斧",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 3
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "终誉命",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 5
+              }
+            },
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "SELF",
+                "status_id": "PRESTIGE",
+                "value": 1,
+                "is_permanent": true
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

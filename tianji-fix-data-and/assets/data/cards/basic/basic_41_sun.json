@@ -1,0 +1,60 @@
+{
+  "id": "basic_41_sun",
+  "name": "损",
+  "symbol": "☶☱",
+  "sequence": 41,
+  "pinyin": "sun",
+  "strokes": 41,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "损有余",
+    "description": "减损一部分以求得平衡。",
+    "variants": {
+      "di": {
+        "name": "遄事",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "resource": "gold",
+                "value": 4
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "损其疾",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "resource": "health",
+                "value": 4
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "三人行",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "OPPONENT_ALL",
+                "resource": "gold",
+                "value": 2
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

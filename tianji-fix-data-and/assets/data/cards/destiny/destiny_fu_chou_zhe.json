@@ -1,0 +1,8 @@
+{
+    "id": "destiny_fu_chou_zhe",
+    "type": "destiny",
+    "name": "复仇者",
+    "effect": {
+        "description": "若你将第一个攻击过你（使你损失金币或生命）的玩家淘汰出局，立即获得20金币。"
+    }
+}

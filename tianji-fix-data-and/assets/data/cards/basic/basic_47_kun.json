@@ -1,0 +1,59 @@
+{
+  "id": "basic_47_kun",
+  "name": "困",
+  "symbol": "☱☵",
+  "sequence": 47,
+  "pinyin": "kun",
+  "strokes": 47,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "身陷困境",
+    "description": "资源被耗尽，行动受限。",
+    "variants": {
+      "di": {
+        "name": "臀困于株木",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 2
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "困于酒食",
+        "effect": {
+          "actions": [
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "SELF",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "困于葛藟",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "health",
+                "value": 2
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

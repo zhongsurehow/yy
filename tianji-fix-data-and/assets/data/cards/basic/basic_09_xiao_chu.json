@@ -1,0 +1,74 @@
+{
+  "id": "basic_09_xiao_chu",
+  "name": "小畜",
+  "symbol": "☴☰",
+  "sequence": 9,
+  "pinyin": "xiao_chu",
+  "strokes": 9,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "密云不雨",
+    "description": "小有积蓄，但尚未形成大的突破。效果偏向于小额的获取与限制。",
+    "variants": {
+      "di": {
+        "name": "种德",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 3
+              }
+            },
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "牵连",
+        "effect": {
+          "actions": [
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "SELF",
+                "count": 1
+              }
+            },
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "节制",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "status_id": "CANNOT_GAIN_GOLD_FROM_ZONE",
+                "duration": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "id": "destiny_shoushu_nu",
+    "type": "destiny",
+    "name": "守财奴",
+    "effect": {
+        "description": "游戏结束时，若你的金币是全场最多，且从未为基金补充过金币，你的最终金币总数额外增加50。"
+    }
+}

@@ -1,0 +1,84 @@
+{
+  "id": "basic_31_xian",
+  "name": "咸",
+  "symbol": "☱☶",
+  "sequence": 31,
+  "pinyin": "xian",
+  "strokes": 31,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "心心相印",
+    "description": "双方产生感应，进行互动。",
+    "variants": {
+      "di": {
+        "name": "咸其拇",
+        "effect": {
+          "actions": [
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 1
+              }
+            },
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "PLAYER_CHOICE_ANY",
+                "deck": "basic",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "咸其股",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "health",
+                "value": 3
+              }
+            },
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "PLAYER_CHOICE_ANY",
+                "resource": "health",
+                "value": 3
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "咸其辅颊舌",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 2
+              }
+            },
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "PLAYER_CHOICE_ANY",
+                "resource": "gold",
+                "value": 2
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

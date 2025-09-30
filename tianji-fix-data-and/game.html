@@ -1,0 +1,873 @@
+--- START OF FILE game.html ---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天机变 - 二人对战模拟</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'KaiTi', 'SimSun', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e6e6e6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 20px;
+            height: calc(100vh - 40px);
+        }
+
+        .game-area {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .game-board-container {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 5px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: visible;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #game-board {
+            width: 90%;
+            height: 90%;
+            min-height: 650px;
+            transform: scale(0.8);
+            transform-origin: center;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-family: inherit;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .panel {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .player-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .player-card {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid;
+        }
+
+        .player-1 {
+            border-left-color: #e74c3c;
+        }
+
+        .player-2 {
+            border-left-color: #3498db;
+        }
+
+        .player-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .player-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+        }
+
+        .battle-log {
+            flex: 1;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        .log-entry {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .log-info {
+            border-left-color: #3498db;
+        }
+
+        .log-battle {
+            border-left-color: #e74c3c;
+        }
+
+        .log-move {
+            border-left-color: #2ecc71;
+        }
+
+        .log-rule {
+            border-left-color: #f39c12;
+        }
+
+        .rules-education {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .rule-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        h2 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 20px;
+            text-align: center;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #fff;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        /* 地图样式 */
+        .zone {
+            stroke: #6b4f3a;
+            stroke-width: 4;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .zone:hover, #Gong_Zhong:hover {
+            filter: brightness(1.25);
+            stroke: gold;
+            stroke-width: 6;
+            transform: scale(1.02);
+        }
+
+        .zone.highlighted {
+            filter: brightness(1.2);
+            stroke: #ffd700;
+            stroke-width: 5;
+        }
+
+        .bu-qimen {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .gong-li   { fill: #c0392b; }
+        .gong-kun  { fill: #f1c40f; }
+        .gong-dui  { fill: #bdc3c7; }
+        .gong-qian { fill: #ecf0f1; }
+        .gong-kan  { fill: #2c3e50; }
+        .gong-gen  { fill: #d3a47c; }
+        .gong-zhen { fill: #27ae60; }
+        .gong-xun  { fill: #2ecc71; }
+
+        .bu-di { opacity: 0.7; }
+        .bu-ren { opacity: 0.85; }
+        .bu-tian { opacity: 1; }
+
+        #Gong_Zhong {
+            cursor: pointer;
+            animation: spin 20s linear infinite;
+            transform-origin: center;
+        }
+
+        .taiji-black-bg { fill: black; stroke: #333; stroke-width: 5; }
+        .taiji-white-half { fill: white; }
+        .taiji-white-semicircle { fill: white; }
+        .taiji-black-semicircle { fill: black; }
+        .fisheye-white { fill: white; }
+        .fisheye-black { fill: black; }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .labels, .trigram-symbol {
+            text-anchor: middle; pointer-events: none;
+            fill: black; stroke: white;
+            stroke-width: 1.5px; paint-order: stroke;
+        }
+
+        .label-on-dark, .symbol-on-dark {
+            fill: white;
+            stroke: black;
+        }
+
+        .labels { font-size: 40px; }
+        .trigram-symbol { font-size: 60px; font-weight: bold; }
+
+        /* 玩家棋子样式 */
+        .player-piece {
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        .player-1-piece {
+            fill: #e74c3c;
+            stroke: #c0392b;
+            stroke-width: 3;
+            filter: drop-shadow(0 0 10px rgba(231, 76, 60, 0.8));
+        }
+
+        .player-2-piece {
+            fill: #3498db;
+            stroke: #2980b9;
+            stroke-width: 3;
+            filter: drop-shadow(0 0 10px rgba(52, 152, 219, 0.8));
+        }
+
+        .current-player {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { filter: drop-shadow(0 0 5px currentColor); }
+            50% { filter: drop-shadow(0 0 20px currentColor); }
+            100% { filter: drop-shadow(0 0 5px currentColor); }
+        }
+
+        /* 奇门遁甲门样式 */
+        .qimen-door {
+            pointer-events: none;
+        }
+
+        .door-circle {
+            fill: rgba(255, 255, 255, 0.95);
+            stroke: #4ecdc4;
+            stroke-width: 4;
+            filter: drop-shadow(0 0 12px rgba(78, 205, 196, 0.6));
+        }
+
+        .door-text {
+            font-size: 23px;
+            font-weight: bold;
+            fill: #2c3e50;
+            text-anchor: middle;
+            dominant-baseline: central;
+            pointer-events: none;
+            font-family: 'KaiTi', 'SimSun', serif;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+        }
+
+        /* 奇门遁甲局数显示 */
+        .ju-info {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="game-area">
+            <div class="game-board-container">
+                <div class="ju-info" id="ju-info">
+                    奇门遁甲: 阳遁第1局
+                </div>
+                <svg id="game-board" viewBox="0 0 800 800">
+                    <g id="di-ring" class="ring-group"></g>
+                    <g id="ren-ring" class="ring-group"></g>
+                    <g id="tian-ring" class="ring-group"></g>
+                    <g id="qimen-ring" class="ring-group"></g>
+
+                    <g id="Gong_Zhong">
+                        <circle class="taiji-black-bg" cx="400" cy="400" r="82" />
+                        <path class="taiji-white-half" d="M400,318 A82,82 0 0,1 400,482 Z" />
+                        <circle class="taiji-white-semicircle" cx="400" cy="359" r="41" />
+                        <circle class="taiji-black-semicircle" cx="400" cy="441" r="41" />
+                        <circle class="fisheye-black" cx="400" cy="359" r="12" />
+                        <circle class="fisheye-white" cx="400" cy="441" r="12" />
+                    </g>
+
+                    <g id="text-labels" class="labels"></g>
+                    <g id="trigram-symbols-layer"></g>
+
+                    <g id="player-pieces"></g>
+
+                    <g id="qimen-doors"></g>
+                </svg>
+            </div>
+
+            <div class="controls">
+                <button id="start-game">开始游戏</button>
+                <button id="next-turn" disabled>下一回合</button>
+                <button id="auto-play" disabled>自动对战</button>
+                <button id="rotate-ju">轮转奇门</button>
+                <button id="reset-game">重置游戏</button>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="panel player-info">
+                <div class="player-card player-1">
+                    <div class="player-name">
+                        <span>玩家一</span>
+                        <span class="current-indicator">●</span>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat"><span>生命值:</span><span id="player1-health">200</span></div>
+                        <div class="stat"><span>金币:</span><span id="player1-gold">100</span></div>
+                        <div class="stat"><span>位置:</span><span id="player1-position">-</span></div>
+                        <div class="stat"><span>状态:</span><span id="player1-status">正常</span></div>
+                    </div>
+                </div>
+                <div class="player-card player-2">
+                    <div class="player-name">
+                        <span>玩家二</span>
+                        <span class="current-indicator" style="opacity: 0.3">●</span>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat"><span>生命值:</span><span id="player2-health">200</span></div>
+                        <div class="stat"><span>金币:</span><span id="player2-gold">100</span></div>
+                        <div class="stat"><span>位置:</span><span id="player2-position">-</span></div>
+                        <div class="stat"><span>状态:</span><span id="player2-status">正常</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel battle-log">
+                <h2>对战记录</h2>
+                <div id="battle-log-content">
+                    <div class="log-entry log-info">游戏准备开始...</div>
+                </div>
+            </div>
+
+            <div class="panel rules-education">
+                <h2>规则教育</h2>
+                <div id="rules-content">
+                    <div class="rule-item">游戏基于易经六十四卦，每个卦象在不同位置有不同效果</div>
+                    <div class="rule-item">玩家可以在天地人三部之间移动，遵循特定的移动规则</div>
+                    <div class="rule-item">对战通过卡牌效果和位置优势进行</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 游戏数据
+        const gameState = {
+            players: [
+                { id: 1, name: "玩家一", health: 200, gold: 100, position: null, status: "正常", isCurrent: true },
+                { id: 2, name: "玩家二", health: 200, gold: 100, position: null, status: "正常", isCurrent: false }
+            ],
+            currentTurn: 0,
+            gameStarted: false,
+            autoPlay: false,
+            battleLog: [],
+            mapData: null,
+            doorPositions: [],
+            currentJu: 1,
+            isYangDun: true
+        };
+
+        const mapData = {
+            center: { x: 400, y: 400 },
+            palaces: [
+                { id: 'Li',   name: '离', symbol: '☲', luoshu: 9, angle: -22.5 },
+                { id: 'Kun',  name: '坤', symbol: '☷', luoshu: 2, angle: 22.5 },
+                { id: 'Dui',  name: '兑', symbol: '☱', luoshu: 7, angle: 67.5 },
+                { id: 'Qian', name: '乾', symbol: '☰', luoshu: 6, angle: 112.5 },
+                { id: 'Kan',  name: '坎', symbol: '☵', luoshu: 1, angle: 157.5 },
+                { id: 'Gen',  name: '艮', symbol: '☶', luoshu: 8, angle: 202.5 },
+                { id: 'Zhen', name: '震', symbol: '☳', luoshu: 3, angle: 247.5 },
+                { id: 'Xun',  name: '巽', symbol: '☴', luoshu: 4, angle: 292.5 }
+            ],
+            departments: [
+                { id: 'Tian', name: '天', innerRadius: 82,  outerRadius: 148 },
+                { id: 'Ren',  name: '人', innerRadius: 148, outerRadius: 230 },
+                { id: 'Di',   name: '地', innerRadius: 230, outerRadius: 313 },
+                { id: 'Qimen', name: '奇门', innerRadius: 313, outerRadius: 395 }
+            ],
+            zones: {}
+        };
+
+        const cardData = {
+            basic: [
+                { name: '乾', effect: '天道酬勤', damage: 15, cost: 10 },
+                { name: '坤', effect: '厚德载物', damage: 10, cost: 5 },
+                { name: '坎', effect: '险中求胜', damage: 20, cost: 15 },
+                { name: '离', effect: '光明普照', damage: 12, cost: 8 }
+            ]
+        };
+
+        const qimenData = [
+            { name: '休门', symbol: '休', effect: '恢复生命值', type: '吉' }, { name: '生门', symbol: '生', effect: '增加金币', type: '吉' },
+            { name: '伤门', symbol: '伤', effect: '造成伤害', type: '凶' }, { name: '杜门', symbol: '杜', effect: '禁止移动', type: '凶' },
+            { name: '景门', symbol: '景', effect: '获得视野', type: '中平' }, { name: '死门', symbol: '死', effect: '大幅伤害', type: '凶' },
+            { name: '惊门', symbol: '惊', effect: '混乱状态', type: '凶' }, { name: '开门', symbol: '开', effect: '自由移动', type: '吉' }
+        ];
+
+        const yangDunPatterns = {
+            1: [1, 8, 3, 4, 9, 2, 7, 6], 2: [2, 9, 4, 5, 1, 3, 8, 7], 3: [3, 1, 5, 6, 2, 4, 9, 8],
+            4: [4, 2, 6, 7, 3, 5, 1, 9], 5: [5, 3, 7, 8, 4, 6, 2, 1], 6: [6, 4, 8, 9, 5, 7, 3, 2],
+            7: [7, 5, 9, 1, 6, 8, 4, 3], 8: [8, 6, 1, 2, 7, 9, 5, 4], 9: [9, 7, 2, 3, 8, 1, 6, 5]
+        };
+        const yinDunPatterns = {
+            1: [9, 2, 7, 6, 1, 8, 3, 4], 2: [8, 1, 6, 5, 9, 7, 2, 3], 3: [7, 9, 5, 4, 8, 6, 1, 2],
+            4: [6, 8, 4, 3, 7, 5, 9, 1], 5: [5, 7, 3, 2, 6, 4, 8, 9], 6: [4, 6, 2, 1, 5, 3, 7, 8],
+            7: [3, 5, 1, 9, 4, 2, 6, 7], 8: [2, 4, 9, 8, 3, 1, 5, 6], 9: [1, 3, 8, 7, 2, 9, 4, 5]
+        };
+
+        function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+            const a = (angleInDegrees - 90) * Math.PI / 180;
+            return { x: centerX + (radius * Math.cos(a)), y: centerY + (radius * Math.sin(a)) };
+        }
+
+        function createAnnulusSector(cx, cy, r0, r1, a0, a1) {
+            const p0 = polarToCartesian(cx, cy, r0, a0); const p1 = polarToCartesian(cx, cy, r1, a0);
+            const p2 = polarToCartesian(cx, cy, r1, a1); const p3 = polarToCartesian(cx, cy, r0, a1);
+            const largeArc = a1 - a0 <= 180 ? "0" : "1";
+            const d = `M ${p0.x} ${p0.y} L ${p1.x} ${p1.y} A ${r1} ${r1} 0 ${largeArc} 1 ${p2.x} ${p2.y} L ${p3.x} ${p3.y} A ${r0} ${r0} 0 ${largeArc} 0 ${p0.x} ${p0.y} Z`;
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute("d", d);
+            return path;
+        }
+
+        function initializeMap() {
+            const svgNS = "http://www.w3.org/2000/svg";
+            function generateZoneShells(data) {
+                data.palaces.forEach(palace => {
+                    data.departments.forEach(dept => {
+                        if (dept.id !== 'Qimen') {
+                            const zoneId = `Gong_${palace.id}-Bu_${dept.id}`;
+                            const radius = (dept.innerRadius + dept.outerRadius) / 2;
+                            const centerAngle = palace.angle + 22.5;
+                            data.zones[zoneId] = { description: `${palace.name}宫之${dept.name}部`, center: polarToCartesian(data.center.x, data.center.y, radius, centerAngle) };
+                        }
+                    });
+                });
+                data.zones['Gong_Zhong'] = { description: '中宫/太极部', center: { x: 400, y: 400 } };
+            }
+            generateZoneShells(mapData);
+
+            mapData.palaces.forEach(palace => {
+                mapData.departments.forEach(dept => {
+                    const zoneId = `Gong_${palace.id}-Bu_${dept.id}`;
+                    const classList = `zone gong-${palace.id.toLowerCase()} bu-${dept.id.toLowerCase()}`;
+                    const path = createAnnulusSector(mapData.center.x, mapData.center.y, dept.innerRadius, dept.outerRadius, palace.angle, palace.angle + 45);
+                    path.setAttribute('id', zoneId); path.setAttribute('class', classList);
+                    if (dept.id === 'Qimen') {
+                        path.style.pointerEvents = 'none'; path.style.opacity = '0.3';
+                    }
+                    document.getElementById(`${dept.id.toLowerCase()}-ring`).appendChild(path);
+                });
+            });
+
+            const labelsGroup = document.getElementById('text-labels');
+            const symbolsGroup = document.getElementById('trigram-symbols-layer');
+            mapData.palaces.forEach(palace => {
+                const currentAngle = palace.angle + 22.5;
+                const isDarkBg = palace.id === 'Kan';
+                const labelRadius = (mapData.departments[1].innerRadius + mapData.departments[1].outerRadius) / 2;
+                const labelPos = polarToCartesian(mapData.center.x, mapData.center.y, labelRadius, currentAngle);
+                const text = document.createElementNS(svgNS, 'text');
+                text.setAttribute('x', labelPos.x); text.setAttribute('y', labelPos.y); text.setAttribute('dy', '0.35em');
+                text.setAttribute('class', isDarkBg ? 'labels label-on-dark' : 'labels'); text.textContent = palace.name;
+                if (currentAngle > 90 && currentAngle < 270) text.setAttribute('transform', `rotate(180 ${labelPos.x} ${labelPos.y})`);
+                labelsGroup.appendChild(text);
+
+                const symbolRadius = (mapData.departments[2].innerRadius + mapData.departments[2].outerRadius) / 2;
+                const symbolPos = polarToCartesian(mapData.center.x, mapData.center.y, symbolRadius, currentAngle);
+                const symbolText = document.createElementNS(svgNS, 'text');
+                symbolText.setAttribute('x', symbolPos.x); symbolText.setAttribute('y', symbolPos.y); symbolText.setAttribute('dy', '0.35em');
+                symbolText.setAttribute('class', `trigram-symbol ${isDarkBg ? 'symbol-on-dark' : ''}`); symbolText.textContent = palace.symbol;
+                if (currentAngle > 90 && currentAngle < 270) symbolText.setAttribute('transform', `rotate(180 ${symbolPos.x} ${symbolPos.y})`);
+                symbolsGroup.appendChild(symbolText);
+            });
+            gameState.mapData = mapData;
+            initializeQimenDoors();
+            updateJuInfo();
+        }
+
+        function calculateQimenDistribution(ju, isYang) {
+            const patterns = isYang ? yangDunPatterns : yinDunPatterns;
+            const juPattern = patterns[ju] || patterns[1];
+            const processedPattern = juPattern.map(p => p === 5 ? 2 : p);
+
+            const doorMap = {};
+            qimenData.forEach((door, index) => {
+                const luoshuNumberOfDoor = processedPattern[index];
+                doorMap[luoshuNumberOfDoor] = door;
+            });
+
+            const distribution = [];
+            mapData.palaces.forEach(palace => {
+                distribution.push(doorMap[palace.luoshu]);
+            });
+            return distribution;
+        }
+
+        function initializeQimenDoors() {
+            const svgNS = "http://www.w3.org/2000/svg";
+            const doorsGroup = document.getElementById('qimen-doors');
+            doorsGroup.innerHTML = '';
+            const doorDistribution = calculateQimenDistribution(gameState.currentJu, gameState.isYangDun);
+            gameState.doorPositions = [];
+
+            mapData.palaces.forEach((palace, index) => {
+                const door = doorDistribution[index];
+
+                // 核心修复：添加此安全检查，防止在“门”不存在时程序崩溃
+                if (!door) {
+                    return; // 如果这个宫位没有门，则跳过此次循环
+                }
+
+                const qimenRadius = (mapData.departments[3].innerRadius + mapData.departments[3].outerRadius) / 2;
+                const qimenAngle = palace.angle + 22.5;
+                const center = polarToCartesian(mapData.center.x, mapData.center.y, qimenRadius, qimenAngle);
+
+                const doorGroup = document.createElementNS(svgNS, 'g');
+                doorGroup.setAttribute('class', 'qimen-door');
+
+                const doorColor = getDoorColor(door.type);
+
+                const circle = document.createElementNS(svgNS, 'circle');
+                circle.setAttribute('cx', center.x); circle.setAttribute('cy', center.y);
+                circle.setAttribute('r', 25); circle.setAttribute('class', 'door-circle');
+                circle.setAttribute('style', `stroke: ${doorColor};`);
+                doorGroup.appendChild(circle);
+
+                const symbol = document.createElementNS(svgNS, 'text');
+                symbol.setAttribute('x', center.x); symbol.setAttribute('y', center.y);
+                symbol.setAttribute('class', 'door-text'); symbol.textContent = door.symbol;
+                doorGroup.appendChild(symbol);
+
+                doorsGroup.appendChild(doorGroup);
+
+                gameState.doorPositions.push({
+                    door: door, center: center, palaceId: palace.id
+                });
+            });
+            addBattleLog(`奇门遁甲布局完成: ${gameState.isYangDun ? '阳遁' : '阴遁'}第${gameState.currentJu}局`, 'rule');
+        }
+
+        function getDoorColor(type) {
+            switch(type) {
+                case '吉': return '#2ecc71';
+                case '凶': return '#e74c3c';
+                case '中平': return '#f39c12';
+                default: return '#bdc3c7';
+            }
+        }
+
+        function rotateQimenJu() {
+            gameState.currentJu++;
+            if (gameState.currentJu > 9) {
+                gameState.currentJu = 1;
+                gameState.isYangDun = !gameState.isYangDun;
+            }
+            initializeQimenDoors();
+            updateJuInfo();
+            addBattleLog(`奇门遁甲轮转: ${gameState.isYangDun ? '阳遁' : '阴遁'}第${gameState.currentJu}局`, 'rule');
+        }
+
+        function updateJuInfo() {
+            document.getElementById('ju-info').textContent = `奇门遁甲: ${gameState.isYangDun ? '阳遁' : '阴遁'}第${gameState.currentJu}局`;
+        }
+
+        function initializePlayers() {
+            const renZones = Object.keys(mapData.zones).filter(zone => zone.includes('Bu_Ren'));
+            const randomZone1 = renZones[Math.floor(Math.random() * renZones.length)];
+            const randomZone2 = renZones.filter(zone => zone !== randomZone1)[Math.floor(Math.random() * (renZones.length - 1))];
+            gameState.players[0].position = randomZone1;
+            gameState.players[1].position = randomZone2;
+            updatePlayerPositions();
+        }
+
+        function updatePlayerPositions() {
+            const group = document.getElementById('player-pieces');
+            group.innerHTML = '';
+            gameState.players.forEach(player => {
+                if (player.position && mapData.zones[player.position]) {
+                    const center = mapData.zones[player.position].center;
+                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle.setAttribute('cx', center.x); circle.setAttribute('cy', center.y);
+                    circle.setAttribute('r', 12);
+                    circle.setAttribute('class', `player-piece player-${player.id}-piece ${player.isCurrent ? 'current-player' : ''}`);
+                    group.appendChild(circle);
+                }
+            });
+            updatePlayerUI();
+        }
+
+        function updatePlayerUI() {
+            gameState.players.forEach(player => {
+                document.getElementById(`player${player.id}-health`).textContent = player.health;
+                document.getElementById(`player${player.id}-gold`).textContent = player.gold;
+                document.getElementById(`player${player.id}-position`).textContent = player.position ? mapData.zones[player.position].description : '-';
+                document.getElementById(`player${player.id}-status`).textContent = player.status;
+                document.querySelector(`.player-${player.id} .current-indicator`).style.opacity = player.isCurrent ? '1' : '0.3';
+            });
+        }
+
+        function addBattleLog(message, type = 'info') {
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry log-${type}`;
+            logEntry.textContent = `[回合 ${gameState.currentTurn}] ${message}`;
+            const logContent = document.getElementById('battle-log-content');
+            logContent.appendChild(logEntry);
+            logContent.scrollTop = logContent.scrollHeight;
+        }
+
+        function addRuleEducation(message) {
+            const ruleItem = document.createElement('div');
+            ruleItem.className = 'rule-item';
+            ruleItem.textContent = message;
+            const rulesContent = document.getElementById('rules-content');
+            rulesContent.appendChild(ruleItem);
+            rulesContent.scrollTop = rulesContent.scrollHeight;
+        }
+
+        function getAdjacentZones(zoneId) {
+            if (zoneId === 'Gong_Zhong') return Object.keys(mapData.zones).filter(zone => zone.includes('Bu_Di'));
+            const [gong, bu] = zoneId.split('-');
+            const palaceId = gong.split('_')[1];
+            const deptId = bu.split('_')[1];
+            const adjacents = [];
+            if (deptId === 'Tian') {
+                adjacents.push(`Gong_${palaceId}-Bu_Ren`);
+                adjacents.push('Gong_Zhong');
+            } else if (deptId === 'Ren') {
+                adjacents.push(`Gong_${palaceId}-Bu_Tian`);
+                adjacents.push(`Gong_${palaceId}-Bu_Di`);
+            } else if (deptId === 'Di') {
+                adjacents.push(`Gong_${palaceId}-Bu_Ren`);
+                const palaceIndex = mapData.palaces.findIndex(p => p.id === palaceId);
+                const prevPalace = mapData.palaces[(palaceIndex + 7) % 8];
+                const nextPalace = mapData.palaces[(palaceIndex + 1) % 8];
+                adjacents.push(`Gong_${prevPalace.id}-Bu_Di`);
+                adjacents.push(`Gong_${nextPalace.id}-Bu_Di`);
+            }
+            return adjacents.filter(zone => zone in mapData.zones);
+        }
+
+        function movePlayer(player) {
+            const adjacentZones = getAdjacentZones(player.position);
+            if (adjacentZones.length > 0) {
+                const randomZone = adjacentZones[Math.floor(Math.random() * adjacentZones.length)];
+                addBattleLog(`${player.name} 从 ${mapData.zones[player.position].description} 移动到 ${mapData.zones[randomZone].description}`, 'move');
+                player.position = randomZone;
+                return true;
+            }
+            return false;
+        }
+
+        function executeBattle(attacker, defender) {
+            const card = cardData.basic[Math.floor(Math.random() * cardData.basic.length)];
+            const damage = Math.floor(card.damage * (0.8 + Math.random() * 0.4));
+            if (attacker.gold >= card.cost) {
+                attacker.gold -= card.cost;
+                defender.health -= damage;
+                addBattleLog(`${attacker.name} 使用【${card.name}】，对 ${defender.name} 造成 ${damage} 点伤害！`, 'battle');
+                if (defender.health <= 0) {
+                    defender.health = 0;
+                    defender.status = '战败';
+                    addBattleLog(`${defender.name} 被击败！`, 'battle');
+                    return true;
+                }
+            } else {
+                addBattleLog(`${attacker.name} 金币不足`, 'info');
+            }
+            return false;
+        }
+
+        function applyCentralPalaceEffect(player) {
+            player.health += 10;
+            player.gold += 15;
+            const effectMessage = `${player.name} 进入中宫，阴阳调和，生命+10，金币+15`;
+            addBattleLog(effectMessage, 'rule');
+            addRuleEducation(`地点效果: 中宫太极 - 阴阳调和`);
+        }
+
+        function executeTurn() {
+            if (!gameState.gameStarted) return;
+            gameState.currentTurn++;
+            const currentPlayer = gameState.players.find(p => p.isCurrent);
+            const otherPlayer = gameState.players.find(p => !p.isCurrent);
+            addBattleLog(`=== 第 ${gameState.currentTurn} 回合开始 ===`, 'info');
+
+            if (movePlayer(currentPlayer)) {
+                updatePlayerPositions();
+
+                if (currentPlayer.position === 'Gong_Zhong') {
+                    applyCentralPalaceEffect(currentPlayer);
+                } else {
+                    checkAndApplyDoorEffect(currentPlayer);
+                }
+
+                if (currentPlayer.position === otherPlayer.position) {
+                    addBattleLog(`${currentPlayer.name} 与 ${otherPlayer.name} 相遇，触发论道！`, 'battle');
+                    if (executeBattle(currentPlayer, otherPlayer)) {
+                        endGame(currentPlayer);
+                        return;
+                    }
+                }
+            }
+
+            currentPlayer.isCurrent = false;
+            otherPlayer.isCurrent = true;
+            updatePlayerUI();
+            if (gameState.autoPlay) setTimeout(executeTurn, 1500);
+        }
+
+        function endGame(winner) {
+            gameState.gameStarted = false;
+            document.getElementById('next-turn').disabled = true;
+            document.getElementById('auto-play').disabled = true;
+            addBattleLog(`=== 游戏结束 ===`, 'info');
+            addBattleLog(`${winner.name} 获得胜利！`, 'battle');
+            alert(`游戏结束！${winner.name} 获得胜利！`);
+        }
+
+        function checkAndApplyDoorEffect(player) {
+            if (!player.position || player.position === 'Gong_Zhong' ) return;
+            const playerPosId = player.position;
+            const currentPalaceId = playerPosId.split('-')[0].split('_')[1];
+            const doorPos = gameState.doorPositions.find(dp => dp.palaceId === currentPalaceId);
+
+            if (doorPos && playerPosId.includes('Bu_Qimen')) {
+                applyDoorEffect(player, doorPos.door);
+                if (Math.random() < 0.3) setTimeout(rotateQimenJu, 1500);
+            }
+        }
+
+        function applyDoorEffect(player, door) {
+            let effectMessage = '';
+            switch(door.symbol) {
+                case '休': player.health += 20; effectMessage = `${player.name} 遇休门，恢复20生命`; break;
+                case '生': player.gold += 30; effectMessage = `${player.name} 遇生门，获得30金币`; break;
+                case '伤': player.health -= 15; effectMessage = `${player.name} 遇伤门，受15伤害`; break;
+                case '杜': player.status = '禁锢'; effectMessage = `${player.name} 遇杜门，下回合禁足`; break;
+                case '景': player.status = '洞察'; effectMessage = `${player.name} 遇景门，获洞察`; break;
+                case '死': player.health -= 40; effectMessage = `${player.name} 遇死门，受40重创`; break;
+                case '惊': player.gold -= 20; effectMessage = `${player.name} 遇惊门，失20金币`; break;
+                case '开': player.status = '自由'; effectMessage = `${player.name} 遇开门，可自由移动`; break;
+            }
+            if (effectMessage) {
+                addBattleLog(effectMessage, 'rule');
+                addRuleEducation(`奇门遁甲: ${door.name} - ${door.effect}`);
+                updatePlayerUI();
+            }
+        }
+
+        function initGame() {
+            initializeMap();
+            initializePlayers();
+            addBattleLog('游戏初始化完成', 'info');
+        }
+
+        document.getElementById('start-game').addEventListener('click', () => {
+            gameState.gameStarted = true;
+            document.getElementById('next-turn').disabled = false;
+            document.getElementById('auto-play').disabled = false;
+            document.getElementById('start-game').disabled = true;
+            addBattleLog('游戏开始！', 'info');
+        });
+        document.getElementById('next-turn').addEventListener('click', executeTurn);
+        document.getElementById('auto-play').addEventListener('click', () => {
+            gameState.autoPlay = !gameState.autoPlay;
+            const button = document.getElementById('auto-play');
+            button.textContent = gameState.autoPlay ? '停止自动' : '自动对战';
+            if (gameState.autoPlay) executeTurn();
+        });
+        document.getElementById('rotate-ju').addEventListener('click', rotateQimenJu);
+        document.getElementById('reset-game').addEventListener('click', () => location.reload());
+
+        document.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>

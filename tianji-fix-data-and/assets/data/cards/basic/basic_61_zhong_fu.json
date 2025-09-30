@@ -1,0 +1,78 @@
+{
+  "id": "basic_61_zhong_fu",
+  "name": "中孚",
+  "symbol": "☴☱",
+  "sequence": 61,
+  "pinyin": "zhong_fu",
+  "strokes": 61,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "诚信之德",
+    "description": "以诚信感化万物。",
+    "variants": {
+      "di": {
+        "name": "得敌",
+        "effect": {
+          "condition": {
+            "op": "PLAYER_HAS_ALLY"
+          },
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 5
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "月几望",
+        "effect": {
+          "condition": {
+            "op": "COMPARE_YIN_YANG_SIGN",
+            "params": {
+              "target_a": "SELF",
+              "target_b": "PLAYER_CHOICE_ANY"
+            }
+          },
+          "actions": [
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 1
+              }
+            },
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "EVENT_TARGET_PLAYER",
+                "deck": "basic",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "翰音登于天",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "SELF",
+                "status_id": "PRESTIGE",
+                "is_permanent": true
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "id": "basic_44_gou",
+  "name": "姤",
+  "symbol": "☰☴",
+  "sequence": 44,
+  "pinyin": "gou",
+  "strokes": 44,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "不期而遇",
+    "description": "意想不到的相遇。",
+    "variants": {
+      "di": {
+        "name": "系于金柅",
+        "effect": {
+          "actions": [
+            {
+              "action": "MOVE",
+              "params": {
+                "target": "SELF",
+                "destination": "PLAYER_ZONE",
+                "player": "OPPONENT_RANDOM"
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "包有鱼",
+        "effect": {
+          "actions": [
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 1
+              }
+            },
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "OPPONENT_RANDOM",
+                "deck": "basic",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "以杞包瓜",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOOKUP",
+              "params": {
+                "target": "SELF",
+                "info_type": "hand_cards",
+                "other_player": "OPPONENT_RANDOM"
+              }
+            },
+            {
+              "action": "LOOKUP",
+              "params": {
+                "target": "OPPONENT_RANDOM",
+                "info_type": "hand_cards",
+                "other_player": "SELF"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "id": "basic_55_feng",
+  "name": "丰",
+  "symbol": "☳☲",
+  "sequence": 55,
+  "pinyin": "feng",
+  "strokes": 55,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "丰功伟业",
+    "description": "日中见斗，象征极盛之时。",
+    "variants": {
+      "di": {
+        "name": "丰其沛",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 10
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "丰其屋",
+        "effect": {
+          "actions": [
+            {
+              "action": "CREATE_ENTITY",
+              "params": {
+                "entity_type": "TREASURE_CAULDRON",
+                "position": "SELF",
+                "is_permanent": true,
+                "properties": {
+                  "name": "宝鼎",
+                  "on_turn_start_effect": {
+                    "actions": [
+                      {
+                        "action": "GAIN_RESOURCE",
+                        "params": {
+                          "target": "OWNER",
+                          "resource": "gold",
+                          "value": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "天际翔也",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 5
+              }
+            },
+            {
+              "action": "MOVE",
+              "params": {
+                "target": "SELF",
+                "move_type": "NORMAL",
+                "value": 3
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "id": "destiny_yinshi",
+    "type": "destiny",
+    "name": "隐士",
+    "effect": {
+        "description": "如果你在游戏结束时，金币数不是第一名，但阴阳指示条恰好在0点，你自动成为一名并列的胜利者。"
+    }
+}

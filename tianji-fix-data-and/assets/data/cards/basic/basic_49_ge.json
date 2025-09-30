@@ -1,0 +1,71 @@
+{
+  "id": "basic_49_ge",
+  "name": "革",
+  "symbol": "☱☲",
+  "sequence": 49,
+  "pinyin": "ge",
+  "strokes": 49,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "顺天应人",
+    "description": "带来巨大的变革。",
+    "variants": {
+      "di": {
+        "name": "巳日乃孚",
+        "effect": {
+          "actions": [
+            {
+              "action": "SWAP_POSITION",
+              "params": {
+                "target_a": "PLAYER_CHOICE_ANY_NON_ALLY",
+                "target_b": "PLAYER_CHOICE_ANY_NON_ALLY",
+                "atomic": true
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "大人虎变",
+        "effect": {
+          "actions": [
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "ALL_PLAYERS",
+                "count": "ALL"
+              }
+            },
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "ALL_PLAYERS",
+                "deck": "basic",
+                "count": 3
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "君子豹变",
+        "effect": {
+          "actions": [
+            {
+              "action": "MODIFY_RULE",
+              "params": {
+                "rule_id": "TURN_ORDER_REVERSED",
+                "scope": "GLOBAL",
+                "mutation": {
+                  "type": "SET_BOOLEAN",
+                  "value": true
+                },
+                "duration": "PERMANENT"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

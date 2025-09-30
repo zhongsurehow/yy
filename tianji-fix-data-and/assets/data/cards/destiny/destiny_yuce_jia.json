@@ -1,0 +1,8 @@
+{
+    "id": "destiny_yuce_jia",
+    "type": "destiny",
+    "name": "预测家",
+    "effect": {
+        "description": "游戏开始时，秘密指定一名玩家。若该玩家最终获胜，你也视为并列胜利。若你本人获胜，此牌无效。"
+    }
+}

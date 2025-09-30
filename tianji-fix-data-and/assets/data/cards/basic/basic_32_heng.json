@@ -1,0 +1,80 @@
+{
+  "id": "basic_32_heng",
+  "name": "恒",
+  "symbol": "☳☴",
+  "sequence": 32,
+  "pinyin": "heng",
+  "strokes": 32,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "恒久之道",
+    "description": "持之以恒，产生持续性的效果。",
+    "variants": {
+      "di": {
+        "name": "浚恒",
+        "effect": {
+          "actions": [
+            {
+              "action": "EXECUTE_LATER",
+              "params": {
+                "delay": "NEXT_TURN_START",
+                "repeat": 3,
+                "expiry_time": "3 ROUNDS",
+                "effect": {
+                  "actions": [
+                    {
+                      "action": "GAIN_RESOURCE",
+                      "params": {
+                        "target": "SELF",
+                        "resource": "gold",
+                        "value": 1
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "振恒",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "SELF",
+                "status_id": "GUARD",
+                "value": 1,
+                "duration": 2
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "不恒其德",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 5
+              }
+            },
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "SELF",
+                "count": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

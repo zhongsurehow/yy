@@ -11,10 +11,10 @@ from .effect_engine import EffectEngine
 class Game:
     """Orchestrates the setup and execution of the game."""
 
-    def __init__(self, player_names: List[str], zip_path_str: str):
+    def __init__(self, player_names: List[str], assets_path_str: str):
         self.game_state = GameState()
         self.player_names = player_names
-        self.loader = GameLoader(Path(zip_path_str))
+        self.loader = GameLoader(Path(assets_path_str))
         self.effect_engine = EffectEngine(self.game_state)
 
     def setup(self, test_cards: List[str] = None):

@@ -1,0 +1,59 @@
+{
+  "id": "basic_34_da_zhuang",
+  "name": "大壮",
+  "symbol": "☳☰",
+  "sequence": 34,
+  "pinyin": "da_zhuang",
+  "strokes": 34,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "声势浩大",
+    "description": "力量强盛，势不可挡。",
+    "variants": {
+      "di": {
+        "name": "壮于趾",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "SELF",
+                "status_id": "DAMAGE_BOOST",
+                "value": 2,
+                "duration": "NEXT_ATTACK"
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "藩决不羸",
+        "effect": {
+          "actions": [
+            {
+              "action": "DEAL_DAMAGE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "value": 4
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "羝羊触藩",
+        "effect": {
+          "actions": [
+            {
+              "action": "DEAL_DAMAGE",
+              "params": {
+                "target": "OPPONENT_ALL",
+                "value": 2
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

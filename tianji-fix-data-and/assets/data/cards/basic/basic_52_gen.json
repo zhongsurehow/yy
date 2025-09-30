@@ -1,0 +1,83 @@
+{
+  "id": "basic_52_gen",
+  "name": "艮",
+  "symbol": "☶☶",
+  "sequence": 52,
+  "pinyin": "gen",
+  "strokes": 52,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "艮止之道",
+    "description": "停止行动，保持静止。",
+    "variants": {
+      "di": {
+        "name": "艮其背",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "SELF",
+                "status_id": "CANNOT_MOVE",
+                "duration": 1
+              }
+            },
+            {
+              "action": "EXECUTE_LATER",
+              "params": {
+                "delay": "NEXT_TURN_START",
+                "expiry_time": "1 ROUND",
+                "effect": {
+                  "actions": [
+                    {
+                      "action": "GAIN_RESOURCE",
+                      "params": {
+                        "target": "SELF",
+                        "resource": "gold",
+                        "value": 5
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "不获其身",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "status_id": "CARDS_LOCKED",
+                "duration": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "时行则行",
+        "effect": {
+          "actions": [
+            {
+              "action": "MODIFY_RULE",
+              "params": {
+                "rule_id": "CARD_EFFECT_MOVEMENT_BLOCKED",
+                "scope": "GLOBAL",
+                "mutation": {
+                  "type": "SET_BOOLEAN",
+                  "value": true
+                },
+                "duration": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

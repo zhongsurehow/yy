@@ -1,0 +1,60 @@
+{
+  "id": "basic_18_gu",
+  "name": "蛊",
+  "symbol": "☶☴",
+  "sequence": 18,
+  "pinyin": "gu",
+  "strokes": 18,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "拨乱反正",
+    "description": "整治混乱，去除弊病。",
+    "variants": {
+      "di": {
+        "name": "干父之蛊",
+        "effect": {
+          "actions": [
+            {
+              "action": "REMOVE_STATUS",
+              "params": {
+                "target": "SELF",
+                "status_id": "ALL_NEGATIVE",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "干母之蛊",
+        "effect": {
+          "actions": [
+            {
+              "action": "REMOVE_STATUS",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "status_id": "ALL_POSITIVE",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "不事王侯",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "SELF",
+                "status_id": "IMMUNITY_GENERAL_NEGATIVE",
+                "duration": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

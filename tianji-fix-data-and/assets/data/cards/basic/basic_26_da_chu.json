@@ -1,0 +1,79 @@
+{
+  "id": "basic_26_da_chu",
+  "name": "大畜",
+  "symbol": "☶☰",
+  "sequence": 26,
+  "pinyin": "da_chu",
+  "strokes": 26,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "积蓄力量",
+    "description": "积蓄资源或限制他人。",
+    "variants": {
+      "di": {
+        "name": "舆说辐",
+        "effect": {
+          "actions": [
+            {
+              "action": "SKIP_PHASE",
+              "params": {
+                "phase": "MOVEMENT"
+              }
+            },
+            {
+              "action": "EXECUTE_LATER",
+              "params": {
+                "delay": "NEXT_TURN_START",
+                "expiry_time": "1 ROUND",
+                "effect": {
+                  "actions": [
+                    {
+                      "action": "GAIN_RESOURCE",
+                      "params": {
+                        "target": "SELF",
+                        "resource": "gold",
+                        "value": 5
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "良马逐",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "status_id": "MOVE_LIMIT",
+                "value": 1,
+                "duration": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "何天之衢",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "SELF",
+                "status_id": "DAMAGE_BOOST",
+                "value": 3,
+                "duration": "NEXT_ATTACK"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

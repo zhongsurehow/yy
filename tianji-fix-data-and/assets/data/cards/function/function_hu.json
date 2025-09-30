@@ -1,0 +1,8 @@
+{
+    "id": "function_hu",
+    "type": "function",
+    "name": "互卦",
+    "core_mechanism": {
+        "description": "解读基础牌后，额外从牌库顶翻开一张牌，只执行其【人部】的效果。"
+    }
+}

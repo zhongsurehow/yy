@@ -1,0 +1,59 @@
+{
+  "id": "basic_12_pi",
+  "name": "否",
+  "symbol": "☰☷",
+  "sequence": 12,
+  "pinyin": "pi",
+  "strokes": 12,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "天地不交",
+    "description": "天地闭塞，万物不通。带来阻碍与停滞。",
+    "variants": {
+      "di": {
+        "name": "包羞",
+        "effect": {
+          "actions": [
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "SELF",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "休否",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "status_id": "CANNOT_MOVE",
+                "duration": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "倾否",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "resource": "gold",
+                "value": 5
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

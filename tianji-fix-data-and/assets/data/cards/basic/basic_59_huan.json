@@ -1,0 +1,57 @@
+{
+  "id": "basic_59_huan",
+  "name": "涣",
+  "symbol": "☴☵",
+  "sequence": 59,
+  "pinyin": "huan",
+  "strokes": 59,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "风行水上",
+    "description": "离散，化解。",
+    "variants": {
+      "di": {
+        "name": "涣奔其机",
+        "effect": {
+          "actions": [
+            {
+              "action": "DESTROY_ENTITY",
+              "params": {
+                "target_entity_id": "CHOICE_NON_PERMANENT"
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "涣其群",
+        "effect": {
+          "actions": [
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "ALL_PLAYERS",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "涣其血",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "ALL_PLAYERS",
+                "resource": "health",
+                "value": 2
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "id": "basic_25_wu_wang",
+  "name": "无妄",
+  "symbol": "☰☳",
+  "sequence": 25,
+  "pinyin": "wu_wang",
+  "strokes": 25,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "无妄之灾",
+    "description": "意料之外的事件，可能好可能坏。",
+    "variants": {
+      "di": {
+        "name": "无妄之行",
+        "effect": {
+          "actions": [
+            {
+              "action": "MOVE",
+              "params": {
+                "target": "SELF",
+                "value": {
+                  "op": "RANDOM",
+                  "min": 1,
+                  "max": 3
+                },
+                "move_type": "NORMAL"
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "无妄之药",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "PLAYER_CHOICE_RANDOM",
+                "resource": "health",
+                "value": 5
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "无妄之灾",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "PLAYER_CHOICE_RANDOM",
+                "resource": "gold",
+                "value": 5
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

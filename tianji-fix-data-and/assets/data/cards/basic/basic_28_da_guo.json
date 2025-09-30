@@ -1,0 +1,84 @@
+{
+  "id": "basic_28_da_guo",
+  "name": "大过",
+  "symbol": "☱☴",
+  "sequence": 28,
+  "pinyin": "da_guo",
+  "strokes": 28,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "矫枉过正",
+    "description": "行事过当，带来极端后果。",
+    "variants": {
+      "di": {
+        "name": "枯杨生华",
+        "effect": {
+          "cost": [
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "SELF",
+                "count": 1
+              }
+            }
+          ],
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 10
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "栋桡",
+        "effect": {
+          "actions": [
+            {
+              "action": "DEAL_DAMAGE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "value": 8
+              }
+            },
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "health",
+                "value": 4
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "过涉灭顶",
+        "effect": {
+          "cost": [
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "SELF",
+                "count": 3
+              }
+            }
+          ],
+          "actions": [
+            {
+              "action": "DEAL_DAMAGE",
+              "params": {
+                "target": "OPPONENT_ALL",
+                "value": 5
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+    "id": "natal_kan",
+    "type": "natal",
+    "name": "坎",
+    "symbol": "☵",
+    "triggers": [
+        {
+            "condition": "ON_PLAYER_ACTION",
+            "params": {"action_type": "TRIGGER_DEBATE", "zone_type": ["WATER", "WOOD"]},
+            "effect": {
+                "description": "在水或木属性区域，你发起的“论道”笔画数-1。"
+            }
+        }
+    ],
+    "effect": {
+        "description": "本轮你的金币奖惩减半。"
+    }
+}

@@ -1,0 +1,69 @@
+{
+  "id": "basic_64_weiji",
+  "name": "未济",
+  "symbol": "☲☵",
+  "sequence": 64,
+  "pinyin": "weiji",
+  "type": "basic",
+  "core_mechanism": {
+    "name": "火水未济",
+    "description": "颠倒阴阳或交换资源。",
+    "variants": {
+      "di": {
+        "name": "倒置",
+        "effect": {
+          "actions": [
+            {
+              "action": "MODIFY_RULE",
+              "params": {
+                "rule_id": "YIN_YANG_SYSTEM_REVERSED",
+                "scope": "SELF",
+                "mutation": {
+                  "type": "SET_BOOLEAN",
+                  "value": true
+                },
+                "duration": 1
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "震用伐鬼方",
+        "usage_limit": {
+          "scope": "GAME",
+          "count": 1,
+          "reset_timing": "NEVER"
+        },
+        "effect": {
+          "actions": [
+            {
+              "action": "SWAP_DISCARD_PILES",
+              "params": {
+                "target_a": "SELF",
+                "target_b": "OPPONENT_CHOICE_SINGLE",
+                "atomic": true
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "易位",
+        "effect": {
+          "actions": [
+            {
+              "action": "SWAP_RESOURCES",
+              "params": {
+                "target_a": "SELF",
+                "target_b": "OPPONENT_CHOICE_SINGLE",
+                "resource": "gold",
+                "atomic": true
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "id": "basic_35_jin",
+  "name": "晋",
+  "symbol": "☲☷",
+  "sequence": 35,
+  "pinyin": "jin",
+  "strokes": 35,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "晋升之道",
+    "description": "不断前进，获得奖赏。",
+    "variants": {
+      "di": {
+        "name": "晋如",
+        "effect": {
+          "actions": [
+            {
+              "action": "MOVE",
+              "params": {
+                "target": "SELF",
+                "move_type": "NORMAL",
+                "value": 2
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "受兹介福",
+        "effect": {
+          "actions": [
+            {
+              "action": "MOVE",
+              "params": {
+                "target": "SELF",
+                "move_type": "NORMAL",
+                "value": 1
+              }
+            },
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "维用伐邑",
+        "effect": {
+          "actions": [
+            {
+              "action": "MOVE",
+              "params": {
+                "target": "SELF",
+                "move_type": "NORMAL",
+                "value": 1
+              }
+            },
+            {
+              "action": "DEAL_DAMAGE",
+              "params": {
+                "target": "PLAYER_IN_NEW_ZONE",
+                "value": 2
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

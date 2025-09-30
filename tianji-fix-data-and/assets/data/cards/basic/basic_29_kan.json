@@ -1,0 +1,67 @@
+{
+  "id": "basic_29_kan",
+  "name": "坎",
+  "symbol": "☵☵",
+  "sequence": 29,
+  "pinyin": "kan",
+  "strokes": 29,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "习坎之险",
+    "description": "重重险难，陷入困境。",
+    "variants": {
+      "di": {
+        "name": "习坎",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 3
+              }
+            },
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "health",
+                "value": 3
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "求小得",
+        "effect": {
+          "actions": [
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "SELF",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "系用徽纆",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "SELF",
+                "status_id": "IMPRISONED",
+                "duration": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

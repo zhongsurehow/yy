@@ -1,0 +1,8 @@
+{
+    "id": "function_fu",
+    "type": "function",
+    "name": "覆卦",
+    "core_mechanism": {
+        "description": "解读基础牌时，执行爻辞的顺序颠倒，变为【天部】→【人部】→【地部】。"
+    }
+}

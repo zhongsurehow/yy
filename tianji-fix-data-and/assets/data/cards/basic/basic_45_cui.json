@@ -1,0 +1,67 @@
+{
+  "id": "basic_45_cui",
+  "name": "萃",
+  "symbol": "☱☷",
+  "sequence": 45,
+  "pinyin": "cui",
+  "strokes": 45,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "荟萃一堂",
+    "description": "将力量或人员聚集起来。",
+    "variants": {
+      "di": {
+        "name": "引吉",
+        "effect": {
+          "actions": [
+            {
+              "action": "MOVE",
+              "params": {
+                "target": "OPPONENT_ALL",
+                "move_type": "TOWARDS_PLAYER",
+                "player": "SELF",
+                "value": 1
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "萃如",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": {
+                  "op": "COUNT",
+                  "target": "ALL_PLAYERS"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "王假有庙",
+        "effect": {
+          "condition": {
+            "op": "PLAYER_HAS_ALLY"
+          },
+          "actions": [
+            {
+              "action": "MOVE",
+              "params": {
+                "target": "ALLY_FORMAL_ALL",
+                "destination": "PLAYER_ZONE",
+                "player": "SELF"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

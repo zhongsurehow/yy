@@ -1,0 +1,139 @@
+{
+  "id": "basic_63_jiji",
+  "name": "既济",
+  "symbol": "☵☲",
+  "sequence": 63,
+  "pinyin": "jiji",
+  "type": "basic",
+  "usage_limit": {
+    "scope": "GAME",
+    "count": 1,
+    "reset_timing": "NEVER"
+  },
+  "core_mechanism": {
+    "name": "水火既济",
+    "description": "在满足特定条件下获得大量胜利点数。",
+    "variants": {
+      "di": {
+        "name": "地",
+        "effect": {
+          "condition": {
+            "op": "AND",
+            "conditions": [
+              {
+                "op": "PLAYER_HAS_FLAG",
+                "params": {
+                  "flag": "YIN_YANG_IS_ZERO"
+                }
+              },
+              {
+                "op": "PLAYER_HAS_FLAG",
+                "params": {
+                  "flag": "FIVE_ELEMENTS_BALANCED"
+                }
+              }
+            ]
+          },
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "VICTORY_POINTS",
+                "value": 100
+              }
+            },
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 30
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "人",
+        "effect": {
+          "condition": {
+            "op": "AND",
+            "conditions": [
+              {
+                "op": "PLAYER_HAS_FLAG",
+                "params": {
+                  "flag": "YIN_YANG_IS_ZERO"
+                }
+              },
+              {
+                "op": "PLAYER_HAS_FLAG",
+                "params": {
+                  "flag": "FIVE_ELEMENTS_BALANCED"
+                }
+              }
+            ]
+          },
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "VICTORY_POINTS",
+                "value": 100
+              }
+            },
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 30
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "天",
+        "effect": {
+          "condition": {
+            "op": "AND",
+            "conditions": [
+              {
+                "op": "PLAYER_HAS_FLAG",
+                "params": {
+                  "flag": "YIN_YANG_IS_ZERO"
+                }
+              },
+              {
+                "op": "PLAYER_HAS_FLAG",
+                "params": {
+                  "flag": "FIVE_ELEMENTS_BALANCED"
+                }
+              }
+            ]
+          },
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "VICTORY_POINTS",
+                "value": 100
+              }
+            },
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 30
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

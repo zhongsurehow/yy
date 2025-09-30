@@ -1,0 +1,64 @@
+{
+  "id": "basic_30_li",
+  "name": "离",
+  "symbol": "☲☲",
+  "sequence": 30,
+  "pinyin": "li",
+  "strokes": 30,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "日月丽天",
+    "description": "如同光明附着于物，带来清晰和洞察。",
+    "variants": {
+      "di": {
+        "name": "黄离",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOOKUP",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "info_type": "hand_cards"
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "日昃之离",
+        "effect": {
+          "cost": [
+            {
+              "resource": "gold",
+              "value": 2
+            }
+          ],
+          "actions": [
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 2
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "突如其来",
+        "effect": {
+          "actions": [
+            {
+              "action": "DEAL_DAMAGE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "value": 4
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

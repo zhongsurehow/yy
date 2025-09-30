@@ -1,0 +1,98 @@
+{
+  "id": "basic_08_bi",
+  "name": "比",
+  "symbol": "☵☷",
+  "sequence": 8,
+  "pinyin": "bi",
+  "strokes": 8,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "同心之盟",
+    "description": "与其他玩家结盟。",
+    "variants": {
+      "di": {
+        "name": "信赖",
+        "effect": {
+          "actions": [
+            {
+              "action": "PROPOSE_ALLIANCE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "duration": 3,
+                "on_accept_effect": {
+                  "actions": [
+                    {
+                      "action": "GAIN_RESOURCE",
+                      "params": {
+                        "target": "SELF",
+                        "resource": "health",
+                        "value": 5
+                      }
+                    },
+                    {
+                      "action": "GAIN_RESOURCE",
+                      "params": {
+                        "target": "EVENT_TARGET_PLAYER",
+                        "resource": "health",
+                        "value": 5
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "外交",
+        "effect": {
+          "actions": [
+            {
+              "action": "PROPOSE_ALLIANCE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "duration": 3,
+                "on_accept_effect": {
+                  "cost": [
+                    {
+                      "resource": "gold",
+                      "value": 5
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "action": "DRAW_CARD",
+                      "params": {
+                        "target": "PLAYER_CHOICE_ANY_NON_ALLY",
+                        "deck": "basic",
+                        "count": 2
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "王道",
+        "effect": {
+          "actions": [
+            {
+              "action": "PROPOSE_ALLIANCE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "duration": 5,
+                "alliance_properties": {
+                  "share_gold_gain_percentage": 10
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

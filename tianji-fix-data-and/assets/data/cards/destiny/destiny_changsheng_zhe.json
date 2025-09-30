@@ -1,0 +1,8 @@
+{
+    "id": "destiny_changsheng_zhe",
+    "type": "destiny",
+    "name": "长生者",
+    "effect": {
+        "description": "游戏结束时，若你的生命值是全场最高，额外获得30金币。"
+    }
+}

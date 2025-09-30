@@ -1,0 +1,89 @@
+{
+  "id": "basic_57_xun",
+  "name": "巽",
+  "symbol": "☴☴",
+  "sequence": 57,
+  "pinyin": "xun",
+  "strokes": 57,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "随风而入",
+    "description": "顺势而为，悄无声息地渗透。",
+    "variants": {
+      "di": {
+        "name": "进退",
+        "effect": {
+          "actions": [
+            {
+              "action": "CHOICE",
+              "params": {
+                "target": "SELF",
+                "options": [
+                  {
+                    "description": "前进1格",
+                    "effect": {
+                      "actions": [
+                        {
+                          "action": "MOVE",
+                          "params": {
+                            "target": "SELF",
+                            "move_type": "NORMAL",
+                            "value": 1
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "description": "后退1格",
+                    "effect": {
+                      "actions": [
+                        {
+                          "action": "MOVE",
+                          "params": {
+                            "target": "SELF",
+                            "move_type": "RETREAT",
+                            "value": 1
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "纷若",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOOKUP",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "info_type": "hand_cards"
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "巽在床下",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "resource": "health",
+                "value": 3
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

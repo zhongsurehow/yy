@@ -1,0 +1,61 @@
+{
+  "id": "basic_15_qian",
+  "name": "谦",
+  "symbol": "☷☶",
+  "sequence": 15,
+  "pinyin": "qian",
+  "strokes": 15,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "谦谦君子",
+    "description": "谦虚退让，获得他人的尊敬或小利。",
+    "variants": {
+      "di": {
+        "name": "谦谦君子",
+        "effect": {
+          "actions": [
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "鸣谦",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 1,
+                "source": "OPPONENT_ALL"
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "劳谦",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "health",
+                "value": 4
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

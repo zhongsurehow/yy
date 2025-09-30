@@ -1,0 +1,8 @@
+{
+    "id": "destiny_heshi_lao",
+    "type": "destiny",
+    "name": "和事佬",
+    "effect": {
+        "description": "游戏结束时，你“论道”平局的次数每有1次，便额外获得3金币和3生命值。"
+    }
+}

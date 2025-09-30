@@ -1,0 +1,8 @@
+{
+    "id": "destiny_tianming_zhizi",
+    "type": "destiny",
+    "name": "天命之子",
+    "effect": {
+        "description": "若你通过【单人胜出】获胜，且结束时生命值高于100，你的最终金币总数翻倍。（用于多局计分）"
+    }
+}

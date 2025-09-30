@@ -1,0 +1,18 @@
+{
+    "id": "natal_xun",
+    "type": "natal",
+    "name": "巽",
+    "symbol": "☴",
+    "triggers": [
+        {
+            "condition": "ON_PHASE_START",
+            "params": {"phase": "MOVEMENT"},
+            "effect": {
+                "description": "移动阶段，可选择额外移动一格。"
+            }
+        }
+    ],
+    "effect": {
+        "description": "结算阶段，可获得任一【天部】区域一半的累积金币。"
+    }
+}

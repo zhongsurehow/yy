@@ -1,0 +1,66 @@
+{
+  "id": "basic_39_jian",
+  "name": "蹇",
+  "symbol": "☵☶",
+  "sequence": 39,
+  "pinyin": "jian",
+  "strokes": 39,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "进退维谷",
+    "description": "行动艰难，充满阻碍。",
+    "variants": {
+      "di": {
+        "name": "往蹇来誉",
+        "effect": {
+          "actions": [
+            {
+              "action": "CREATE_ENTITY",
+              "params": {
+                "entity_type": "HINDRANCE",
+                "position": "SELF",
+                "duration": 1,
+                "properties": {
+                  "blocks_movement": {
+                    "for": "ALL_PLAYERS"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "王臣蹇蹇",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "status_id": "ACTION_COST_INCREASED",
+                "value": 2,
+                "duration": "NEXT_ACTION"
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "利见大人",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "status_id": "CANNOT_MOVE",
+                "duration": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

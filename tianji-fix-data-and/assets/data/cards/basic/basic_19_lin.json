@@ -1,0 +1,62 @@
+{
+  "id": "basic_19_lin",
+  "name": "临",
+  "symbol": "☷☱",
+  "sequence": 19,
+  "pinyin": "lin",
+  "strokes": 19,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "君子之临",
+    "description": "亲自到达，产生影响。",
+    "variants": {
+      "di": {
+        "name": "咸临",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "PLAYERS_IN_SAME_ZONE",
+                "resource": "gold",
+                "value": 2
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "甘临",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "health",
+                "value": {
+                  "op": "COUNT",
+                  "target": "PLAYERS_IN_SAME_ZONE"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "知临",
+        "effect": {
+          "actions": [
+            {
+              "action": "DEAL_DAMAGE",
+              "params": {
+                "target": "OTHER_PLAYERS_IN_SAME_ZONE",
+                "value": 2
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

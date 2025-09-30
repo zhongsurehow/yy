@@ -1,0 +1,18 @@
+{
+    "id": "natal_li",
+    "type": "natal",
+    "name": "离",
+    "symbol": "☲",
+    "triggers": [
+        {
+            "condition": "ON_PHASE_START",
+            "params": {"phase": "YEAR_STEM", "stem": "FIRE"},
+            "effect": {
+                "description": "若流年干支为火，额外抽1张基础牌。"
+            }
+        }
+    ],
+    "effect": {
+        "description": "复制场上另一名玩家本轮已解读的爻辞效果。"
+    }
+}

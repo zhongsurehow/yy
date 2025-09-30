@@ -1,0 +1,66 @@
+{
+  "id": "basic_43_guai",
+  "name": "夬",
+  "symbol": "☱☰",
+  "sequence": 43,
+  "pinyin": "guai",
+  "strokes": 43,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "刚决柔也",
+    "description": "以强硬手段做出决断。",
+    "variants": {
+      "di": {
+        "name": "壮于前趾",
+        "effect": {
+          "actions": [
+            {
+              "action": "DESTROY_ENTITY",
+              "params": {
+                "target_entity_id": "CHOICE"
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "扬于王庭",
+        "effect": {
+          "cost": [
+            {
+              "action": "DISCARD_CARD",
+              "params": {
+                "target": "SELF",
+                "count": 3
+              }
+            }
+          ],
+          "actions": [
+            {
+              "action": "DEAL_DAMAGE",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "value": 10
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "无号",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "SELF",
+                "status_id": "UNSTOPPABLE",
+                "duration": "NEXT_ACTION"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

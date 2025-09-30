@@ -1,0 +1,59 @@
+{
+  "id": "basic_20_guan",
+  "name": "观",
+  "symbol": "☴☷",
+  "sequence": 20,
+  "pinyin": "guan",
+  "strokes": 20,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "洞察观瞻",
+    "description": "观察局势，获取信息。",
+    "variants": {
+      "di": {
+        "name": "童观",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOOKUP",
+              "params": {
+                "target": "SELF",
+                "info_type": "DECK_TOP",
+                "deck": "basic",
+                "count": 3
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "窥观",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOOKUP",
+              "params": {
+                "target": "OPPONENT_CHOICE_SINGLE",
+                "info_type": "destiny_card"
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "观我生",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOOKUP",
+              "params": {
+                "target": "ALL_PLAYERS",
+                "info_type": "PUBLIC_INFO"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

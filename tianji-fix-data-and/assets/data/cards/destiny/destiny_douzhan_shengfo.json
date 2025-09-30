@@ -1,0 +1,8 @@
+{
+    "id": "destiny_douzhan_shengfo",
+    "type": "destiny",
+    "name": "斗战胜佛",
+    "effect": {
+        "description": "游戏结束时，你“论道”获胜的次数每有1次，便额外获得5金币。"
+    }
+}

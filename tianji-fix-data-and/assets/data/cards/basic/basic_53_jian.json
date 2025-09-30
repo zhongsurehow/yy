@@ -1,0 +1,60 @@
+{
+  "id": "basic_53_jian",
+  "name": "渐",
+  "symbol": "☴☶",
+  "sequence": 53,
+  "pinyin": "jian",
+  "strokes": 53,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "循序渐进",
+    "description": "逐步发展，最终成功。",
+    "variants": {
+      "di": {
+        "name": "鸿渐于干",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 2
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "鸿渐于磐",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 4
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "鸿渐于陆",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 6
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

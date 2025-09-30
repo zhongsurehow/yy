@@ -1,0 +1,60 @@
+{
+  "id": "basic_40_xie",
+  "name": "解",
+  "symbol": "☳☵",
+  "sequence": 40,
+  "pinyin": "xie",
+  "strokes": 40,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "解脱困境",
+    "description": "从困境中解脱出来。",
+    "variants": {
+      "di": {
+        "name": "田获三狐",
+        "effect": {
+          "actions": [
+            {
+              "action": "REMOVE_STATUS",
+              "params": {
+                "target": "SELF",
+                "status_id": "ALL_NEGATIVE",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "解而拇",
+        "effect": {
+          "actions": [
+            {
+              "action": "REMOVE_STATUS",
+              "params": {
+                "target": "PLAYER_CHOICE_ANY",
+                "status_id": "ALL_NEGATIVE",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "公用射隼",
+        "effect": {
+          "actions": [
+            {
+              "action": "REMOVE_STATUS",
+              "params": {
+                "target": "ALL_PLAYERS",
+                "status_id": "ALL_NEGATIVE",
+                "count": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

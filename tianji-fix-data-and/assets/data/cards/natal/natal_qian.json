@@ -1,0 +1,18 @@
+{
+    "id": "natal_qian",
+    "type": "natal",
+    "name": "乾",
+    "symbol": "☰",
+    "triggers": [
+        {
+            "condition": "ON_GAIN_RESOURCE",
+            "params": {"zone": "HEAVEN", "resource": "gold"},
+            "effect": {
+                "description": "从【天部】获得金币时，额外+1。"
+            }
+        }
+    ],
+    "effect": {
+        "description": "移动阶段，可直接移至任意未被占据的【天部】。"
+    }
+}

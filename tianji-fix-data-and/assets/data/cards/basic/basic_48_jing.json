@@ -1,0 +1,75 @@
+{
+  "id": "basic_48_jing",
+  "name": "井",
+  "symbol": "☵☴",
+  "sequence": 48,
+  "pinyin": "jing",
+  "strokes": 48,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "井养不穷",
+    "description": "如同水井，提供源源不断的资源。",
+    "variants": {
+      "di": {
+        "name": "井渫不食",
+        "effect": {
+          "actions": [
+            {
+              "action": "CREATE_ENTITY",
+              "params": {
+                "entity_type": "WELLSPRING",
+                "position": "SELF",
+                "is_permanent": true,
+                "properties": {
+                  "name": "甘泉井",
+                  "on_turn_end_effect": {
+                    "actions": [
+                      {
+                        "action": "GAIN_RESOURCE",
+                        "params": {
+                          "target": "EVENT_SOURCE_PLAYER",
+                          "resource": "gold",
+                          "value": 2
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "井谷射鲋",
+        "effect": {
+          "actions": [
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 2
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "井收勿幕",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "health",
+                "value": 5
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

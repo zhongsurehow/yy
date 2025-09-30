@@ -1,0 +1,74 @@
+{
+  "id": "basic_46_sheng",
+  "name": "升",
+  "symbol": "☷☴",
+  "sequence": 46,
+  "pinyin": "sheng",
+  "strokes": 46,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "步步高升",
+    "description": "地位或力量的上升。",
+    "variants": {
+      "di": {
+        "name": "允升",
+        "effect": {
+          "condition": {
+            "op": "IS_IN_DEPARTMENT",
+            "params": {
+              "target": "SELF",
+              "department": "di"
+            }
+          },
+          "actions": [
+            {
+              "action": "MOVE",
+              "params": {
+                "target": "SELF",
+                "destination": "RANDOM_EMPTY_IN_DEPARTMENT",
+                "department": "ren"
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "升阶",
+        "effect": {
+          "condition": {
+            "op": "IS_IN_DEPARTMENT",
+            "params": {
+              "target": "SELF",
+              "department": "ren"
+            }
+          },
+          "actions": [
+            {
+              "action": "MOVE",
+              "params": {
+                "target": "SELF",
+                "destination": "RANDOM_EMPTY_IN_DEPARTMENT",
+                "department": "tian"
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "冥升",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 5
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

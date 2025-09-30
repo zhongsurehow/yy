@@ -1,0 +1,17 @@
+{
+    "id": "natal_kun",
+    "type": "natal",
+    "name": "坤",
+    "symbol": "☷",
+    "triggers": [
+        {
+            "condition": "ON_GAME_START",
+            "effect": {
+                "description": "初始生命值+30。"
+            }
+        }
+    ],
+    "effect": {
+        "description": "立即取消一次【地部】惩罚或“论道”失败惩罚。"
+    }
+}

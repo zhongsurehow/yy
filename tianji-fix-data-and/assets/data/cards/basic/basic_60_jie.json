@@ -1,0 +1,64 @@
+{
+  "id": "basic_60_jie",
+  "name": "节",
+  "symbol": "☵☱",
+  "sequence": 60,
+  "pinyin": "jie",
+  "strokes": 60,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "节制之道",
+    "description": "限制行为，有度则吉。",
+    "variants": {
+      "di": {
+        "name": "不出户庭",
+        "effect": {
+          "actions": [
+            {
+              "action": "APPLY_STATUS",
+              "params": {
+                "target": "SELF",
+                "status_id": "CANNOT_MOVE",
+                "duration": 1
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "不节",
+        "effect": {
+          "actions": [
+            {
+              "action": "LOSE_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 3
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "甘节",
+        "effect": {
+          "actions": [
+            {
+              "action": "MODIFY_RULE",
+              "params": {
+                "rule_id": "HAND_LIMIT_DRAW",
+                "scope": "GLOBAL",
+                "mutation": {
+                  "type": "ADD_MODIFIER",
+                  "value": -1
+                },
+                "duration": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

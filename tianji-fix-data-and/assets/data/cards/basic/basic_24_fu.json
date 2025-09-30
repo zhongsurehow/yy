@@ -1,0 +1,59 @@
+{
+  "id": "basic_24_fu",
+  "name": "复",
+  "symbol": "☷☳",
+  "sequence": 24,
+  "pinyin": "fu",
+  "strokes": 24,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "一阳来复",
+    "description": "从终点回到起点，重新开始。",
+    "variants": {
+      "di": {
+        "name": "不远复",
+        "effect": {
+          "actions": [
+            {
+              "action": "MOVE",
+              "params": {
+                "target": "SELF",
+                "destination": "START_OF_TURN_POSITION"
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "休复",
+        "effect": {
+          "actions": [
+            {
+              "action": "RECOVER_CARD_FROM_DISCARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 1
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "敦复",
+        "effect": {
+          "actions": [
+            {
+              "action": "SET_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "YIN_YANG_GAUGE",
+                "value": 0
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

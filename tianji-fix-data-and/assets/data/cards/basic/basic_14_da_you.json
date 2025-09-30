@@ -1,0 +1,68 @@
+{
+  "id": "basic_14_da_you",
+  "name": "大有",
+  "symbol": "☲☰",
+  "sequence": 14,
+  "pinyin": "da_you",
+  "strokes": 14,
+  "type": "basic",
+  "core_mechanism": {
+    "name": "大有斩获",
+    "description": "象征大丰收，获得大量资源。",
+    "variants": {
+      "di": {
+        "name": "交相利",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 8
+              }
+            }
+          ]
+        }
+      },
+      "ren": {
+        "name": "公用亨于天子",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 5
+              }
+            },
+            {
+              "action": "DRAW_CARD",
+              "params": {
+                "target": "SELF",
+                "deck": "basic",
+                "count": 2
+              }
+            }
+          ]
+        }
+      },
+      "tian": {
+        "name": "自天祐之",
+        "effect": {
+          "actions": [
+            {
+              "action": "GAIN_RESOURCE",
+              "params": {
+                "target": "SELF",
+                "resource": "gold",
+                "value": 10
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
