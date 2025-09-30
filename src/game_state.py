@@ -19,6 +19,12 @@ class GameState:
     celestial_stem_deck: List[Card] = field(default_factory=list)
     terrestrial_branch_deck: List[Card] = field(default_factory=list)
 
+    # Discard piles
+    basic_discard_pile: List[Card] = field(default_factory=list)
+    function_discard_pile: List[Card] = field(default_factory=list)
+    celestial_stem_discard_pile: List[Card] = field(default_factory=list)
+    terrestrial_branch_discard_pile: List[Card] = field(default_factory=list)
+
     # Game flow & state
     game_fund: int = 0
     current_celestial_stem: Card | None = None

@@ -12,9 +12,9 @@ class Player:
     gold: int = 100
     yin_yang: int = 0
     position: str | None = None
+    is_eliminated: bool = False
 
     hand: List[Card] = field(default_factory=list)
-    discard_pile: List[Card] = field(default_factory=list)
     status_effects: List[Dict[str, Any]] = field(default_factory=list)
 
     played_card: Card | None = None
@@ -34,11 +34,6 @@ class Player:
             self.played_card = card_to_play
             return card_to_play
         return None
-
-    def discard_played_card(self):
-        if self.played_card:
-            self.discard_pile.append(self.played_card)
-            self.played_card = None
 
     def can_afford(self, resource_type: str, value: int) -> bool:
         """Checks if the player has enough of a resource."""

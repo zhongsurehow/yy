@@ -82,8 +82,9 @@ class TestGameLoop(unittest.TestCase):
         self.bob.position = "kan_di"
         initial_bob_health = self.bob.health
 
-        # The gate effect is triggered at the end of the movement phase
-        self.game._execute_movement_phase()
+        # The gate effect is triggered at the end of the movement phase.
+        # We call the new, specific method to avoid the random movement.
+        self.game._trigger_gate_effects()
 
         #休门 (+10 health) should have been triggered and resolved.
         self.assertEqual(self.bob.health, initial_bob_health + 10)

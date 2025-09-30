@@ -1,6 +1,18 @@
 from dataclasses import dataclass, field
 from typing import List, Dict, Any
 
+# Defines the circular adjacency of the eight palaces (Ba Gua)
+PALACE_ADJACENCY = {
+    "kan": ["qian", "gen"],
+    "gen": ["kan", "zhen"],
+    "zhen": ["gen", "xun"],
+    "xun": ["zhen", "li"],
+    "li": ["xun", "kun"],
+    "kun": ["li", "dui"],
+    "dui": ["kun", "qian"],
+    "qian": ["dui", "kan"],
+}
+
 @dataclass
 class Zone:
     """Represents a single area on the board."""
@@ -86,10 +98,12 @@ class GameBoard:
         current_dept = current_zone.department
 
         if current_dept == 'di':
-            # Can move to adjacent Di zones or up to own Ren
+            # Can move up to own Ren
             valid_moves.append(f"{current_palace}_ren")
-            # Logic for adjacent palaces would be here (simplified for now)
-            # Example: find adjacent palace names and form zone_id
+            # Can move to adjacent palaces' Di zones
+            adjacent_palaces = PALACE_ADJACENCY.get(current_palace, [])
+            for adj_palace in adjacent_palaces:
+                valid_moves.append(f"{adj_palace}_di")
         elif current_dept == 'ren':
             # Can move up to own Tian or down to own Di
             valid_moves.append(f"{current_palace}_tian")
