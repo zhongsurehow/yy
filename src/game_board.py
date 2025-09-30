@@ -9,6 +9,8 @@ class Zone:
     department: str # e.g., "tian"
     luoshu_number: int
     five_element: str
+    gold_reward: int = 0
+    gold_penalty: int = 0
 
 @dataclass
 class GameBoard:
@@ -68,4 +70,43 @@ class GameBoard:
     def update_qimen_gates(self, new_gates: Dict[str, str]):
         """Updates the positions of the Qi Men gates for a new Ju."""
         self.qimen_gates = new_gates
-        print(f"Qi Men Gates updated: {self.qimen_gates}")
+        logging.info(f"Qi Men Gates updated for Ju: {new_gates}")
+
+    def get_valid_moves(self, zone_id: str) -> List[str]:
+        """
+        Calculates all valid adjacent destination zones from a given zone_id,
+        based on the game's movement rules.
+        """
+        current_zone = self.get_zone(zone_id)
+        if not current_zone:
+            return []
+
+        valid_moves = []
+        current_palace = current_zone.palace
+        current_dept = current_zone.department
+
+        if current_dept == 'di':
+            # Can move to adjacent Di zones or up to own Ren
+            valid_moves.append(f"{current_palace}_ren")
+            # Logic for adjacent palaces would be here (simplified for now)
+            # Example: find adjacent palace names and form zone_id
+        elif current_dept == 'ren':
+            # Can move up to own Tian or down to own Di
+            valid_moves.append(f"{current_palace}_tian")
+            valid_moves.append(f"{current_palace}_di")
+        elif current_dept == 'tian':
+            # Can move down to own Ren or into Zhong Gong
+            valid_moves.append(f"{current_palace}_ren")
+            valid_moves.append("zhong_gong")
+        elif current_dept == 'zhong':
+            # Must leave to the Di zone with the lowest Luo Shu number.
+            # This is a simplified version; a full implementation would check for occupancy.
+            di_zones = sorted(
+                [z for z in self.zones.values() if z.department == 'di'],
+                key=lambda z: z.luoshu_number
+            )
+            if di_zones:
+                valid_moves.append(di_zones[0].zone_id)
+
+        # Filter out moves to non-existent zones
+        return [move for move in valid_moves if move in self.zones]

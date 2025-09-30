@@ -3,10 +3,10 @@ import logging
 from unittest.mock import MagicMock
 
 # Adjust imports to work with the project structure
-from .game_state import GameState
-from .player import Player
-from .effect_engine import EffectEngine
-from .card import Card
+from src.game_state import GameState
+from src.player import Player
+from src.effect_engine import EffectEngine
+from src.card import Card
 
 class TestEffectEngine(unittest.TestCase):
 

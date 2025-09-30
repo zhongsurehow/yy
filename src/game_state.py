@@ -16,8 +16,14 @@ class GameState:
     basic_deck: List[Card] = field(default_factory=list)
     function_deck: List[Card] = field(default_factory=list)
     destiny_deck: List[Card] = field(default_factory=list)
+    celestial_stem_deck: List[Card] = field(default_factory=list)
+    terrestrial_branch_deck: List[Card] = field(default_factory=list)
 
-    # Game flow
+    # Game flow & state
+    game_fund: int = 0
+    current_celestial_stem: Card | None = None
+    current_terrestrial_branch: Card | None = None
+    ju_number: int = 1
     current_turn: int = 1
     current_phase: str = "SETUP" # e.g., SETUP, TIME, PLACEMENT, MOVEMENT, etc.
     active_player_index: int = 0
@@ -37,11 +43,17 @@ class GameState:
         return self.players[self.active_player_index]
 
     def advance_to_next_player(self):
-        """Advances the turn to the next player."""
+        """Advances the turn to the next player. Increments Ju and Turn counters when a full cycle completes."""
         self.active_player_index = (self.active_player_index + 1) % len(self.players)
         if self.active_player_index == 0:
+            # A full round of turns has passed.
             self.current_turn += 1
-            logging.info(f"--- Starting Turn {self.current_turn} ---")
+            logging.info(f"--- Starting Round {self.current_turn} ---")
+
+            # Check if it's time to advance the Ju
+            # This assumes the starting player marker moves each round.
+            self.ju_number += 1
+            logging.info(f"*** New Ju: {self.ju_number}. Qi Men Gates will shift. ***")
 
     def set_phase(self, phase_name: str):
         """Sets the current game phase."""
