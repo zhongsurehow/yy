@@ -24,6 +24,21 @@ class Player:
         statuses = [s.get('status_id') for s in self.status_effects]
         return f"Player(id='{self.player_id}', name='{self.name}', health={self.health}, gold={self.gold}, position='{self.position}', statuses={statuses})"
 
+    def to_dict(self) -> Dict[str, Any]:
+        """Serializes the Player object to a dictionary."""
+        return {
+            "player_id": self.player_id,
+            "name": self.name,
+            "health": self.health,
+            "gold": self.gold,
+            "yin_yang": self.yin_yang,
+            "position": self.position,
+            "is_eliminated": self.is_eliminated,
+            "hand": [card.to_dict() for card in self.hand],
+            "status_effects": self.status_effects,
+            "played_card": self.played_card.to_dict() if self.played_card else None,
+        }
+
     def add_card_to_hand(self, card: Card):
         self.hand.append(card)
 

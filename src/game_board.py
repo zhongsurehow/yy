@@ -24,6 +24,18 @@ class Zone:
     gold_reward: int = 0
     gold_penalty: int = 0
 
+    def to_dict(self) -> Dict[str, Any]:
+        """Serializes the Zone object to a dictionary."""
+        return {
+            "zone_id": self.zone_id,
+            "palace": self.palace,
+            "department": self.department,
+            "luoshu_number": self.luoshu_number,
+            "five_element": self.five_element,
+            "gold_reward": self.gold_reward,
+            "gold_penalty": self.gold_penalty,
+        }
+
 @dataclass
 class GameBoard:
     """Represents the game board, including all zones and dynamic elements."""
@@ -124,3 +136,10 @@ class GameBoard:
 
         # Filter out moves to non-existent zones
         return [move for move in valid_moves if move in self.zones]
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Serializes the GameBoard object to a dictionary."""
+        return {
+            "zones": {zone_id: zone.to_dict() for zone_id, zone in self.zones.items()},
+            "qimen_gates": self.qimen_gates,
+        }

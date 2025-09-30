@@ -68,3 +68,17 @@ class GameState:
 
     def __repr__(self) -> str:
         return f"GameState(Turn={self.current_turn}, Phase='{self.current_phase}', ActivePlayer='{self.get_active_player().name}')"
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Serializes the entire GameState object to a dictionary."""
+        return {
+            "players": [p.to_dict() for p in self.players],
+            "game_board": self.game_board.to_dict(),
+            "current_turn": self.current_turn,
+            "current_phase": self.current_phase,
+            "active_player_id": self.get_active_player().player_id,
+            "ju_number": self.ju_number,
+            "game_fund": self.game_fund,
+            "current_celestial_stem": self.current_celestial_stem.to_dict() if self.current_celestial_stem else None,
+            "current_terrestrial_branch": self.current_terrestrial_branch.to_dict() if self.current_terrestrial_branch else None,
+        }

@@ -37,3 +37,13 @@ class Card:
 
     def __repr__(self) -> str:
         return f"Card(id='{self.card_id}', name='{self.name}')"
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Serializes the Card object to a dictionary."""
+        return {
+            "card_id": self.card_id,
+            "name": self.name,
+            "card_type": self.card_type,
+            "strokes": self.strokes,
+            "symbol": self.symbol,
+        }
