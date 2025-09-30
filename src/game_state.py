@@ -21,6 +21,11 @@ class GameState:
     current_phase: str = "SETUP" # e.g., SETUP, TIME, PLACEMENT, MOVEMENT, etc.
     active_player_index: int = 0
 
+    # Rule and effect tracking
+    active_rules: Dict[str, Any] = field(default_factory=dict)
+    last_resolved_effect: Dict[str, Any] | None = None
+    interrupt_flags: Dict[str, bool] = field(default_factory=dict)
+
     def get_player(self, player_id: str) -> Player | None:
         """Finds a player by their ID."""
         return next((p for p in self.players if p.player_id == player_id), None)

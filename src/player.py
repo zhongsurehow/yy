@@ -39,6 +39,16 @@ class Player:
             self.discard_pile.append(self.played_card)
             self.played_card = None
 
+    def can_afford(self, resource_type: str, value: int) -> bool:
+        """Checks if the player has enough of a resource."""
+        if resource_type == "health":
+            return self.health >= value
+        elif resource_type == "gold":
+            return self.gold >= value
+        elif resource_type == "yin_yang":
+            return self.yin_yang >= value
+        return False
+
     def change_resource(self, resource_type: str, value: int):
         if resource_type == "health":
             self.health += value
@@ -67,6 +77,10 @@ class Player:
         """Decrements the duration of all temporary statuses and removes expired ones."""
         # We iterate over a copy of the list to allow safe removal
         for status in self.status_effects[:]:
+            # Permanent statuses should not have their duration ticked down.
+            if status.get('is_permanent', False):
+                continue
+
             if 'duration' in status:
                 status['duration'] -= 1
                 if status['duration'] <= 0:
